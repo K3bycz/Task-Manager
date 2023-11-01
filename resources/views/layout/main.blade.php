@@ -3,6 +3,9 @@
         <meta charset="utf-8">
         <link href="https://fonts.cdnfonts.com/css/public-pixel" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <script src="{{ asset('js/app.js') }}"></script>
+
         <title> @yield('title', $applicationName ) </title>
 
         <script src="{{ asset('js/clock.js') }}"></script>
