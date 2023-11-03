@@ -70,16 +70,17 @@ document.getElementById('imageUpload').addEventListener('change', function () {
             </form>    
             <hr>
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a  href="{{ route('logout') }}"
+            <div>
+                <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Wyloguj się
                 </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
             </form>
-
+          
             </div>    
+
         </div> 
     </div>
 @endsection    
