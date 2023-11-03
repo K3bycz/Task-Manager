@@ -1,24 +1,3 @@
-body, ul {
-    margin: 0;
-    padding: 0;
-    background-color: #e6e6fa;
-}
-
-li {
-    padding-left: 20px;
-    padding-top: 20px;
-    background-color: #bcbcf2;
-}
-
-ul {
-    list-style-type: none;
-    
-}
-
-a:link {
-  text-decoration: none;
-}
-
 a {
   background-image: linear-gradient(
     to right,
