@@ -1,81 +1,76 @@
-body, ul {
+body{
     margin: 0;
     padding: 0;
-    background-color: #e6e6fa;
-}
-
-li {
-    padding-left: 20px;
-    padding-top: 20px;
-    background-color: #bcbcf2;
+    overflow: hidden;
 }
 
 ul {
+    margin-bottom:10px !important;
     list-style-type: none;
-    
 }
 
-a:link {
-  text-decoration: none;
+li {
+    padding-left: 10px;
+    background-color: #bcbcf2;
 }
 
 a {
-  background-image: linear-gradient(
+    background-image: linear-gradient(
     to right,
     #5d3fd3,
     #5d3fd3 50%,
     #000 50%
-  );
-  background-size: 200% 100%;
-  background-position: -100%;
-  display: inline-block;
-  padding: 5px 0;
-  position: relative;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: all 0.3s ease-in-out;
+    );
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    padding: 5px 0;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+a:link {
+    text-decoration: none;
 }
 
 a:before {
-  content: '';
-  background: #5d3fd3;
-  display: block;
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 3px;
-  transition: all 0.3s ease-in-out;
+    content: '';
+    background: #5d3fd3;
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: all 0.3s ease-in-out;
 }
 
 a:hover {
- background-position: 0;
+    background-position: 0;
 }
 
 a:hover::before {
-  width:100%;
+    width:100%;
 }
 
 .header {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
     background-color: #9191e9;
-    height: 6%;
-    width:100%;
-    position: relative;
+    height:6vh;
+    overflow-x: hidden;
     z-index: 1;
 }
 
 .sidebar {
-    font-family: Arial, sans-serif;
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-    font-size: 17px;
-    padding-top: 10px;
-    text-align: left;
-    float: left;
     background-color: #bcbcf2;
-    width: 12%;
-    height: 94%;
-    position: relative;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    text-align: left;
+    padding-top: 10px;
+    height:94vh;
     z-index: 0; 
 }
 
@@ -89,11 +84,6 @@ a:hover::before {
 }
 
 .content {
-    position: relative;
-    width: 88%;
-    float: right;
     z-index: -1;
-    
-    
 }
 

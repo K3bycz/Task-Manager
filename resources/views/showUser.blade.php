@@ -43,7 +43,7 @@ document.getElementById('imageUpload').addEventListener('change', function () {
 </script>
 
 @section('content')
-    <div class="container">
+    <div class="content">
 
         <div class="titleBlock">
             Informacje o zalogowanym użytkowniku
