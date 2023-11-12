@@ -2,18 +2,6 @@
 @section('content')
 
 <style>
-    .titleBlock {
-        font-family: Sans MS, Comic Sans, cursive;
-        font-size: 24px;
-        padding-left: 1%;
-        padding-top: 1%;
-        box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-        background-color: #d1d1f6;
-        height: 5%;
-        position: relative;
-        z-index: 1;
-        text-align: left;}
-
     th {
         font-weight: normal;
         padding: 4px 10px;
@@ -55,12 +43,8 @@
         height: 45px;}
 </style>
 
-<div class="titleBlock">
-    Lista Zadań
-</div>
-
 <div class="sortMenu"> 
-<label for="sortSelect">Filtry:</label>
+    <label for="sortSelect">Filtry:</label>
     <select id="sortSelect" onchange="window.location.href = this.value;">
         <option value=""></option>
         <option value="{{ route('tasks.list', ['sort_by' => 'id', 'sort_order' => 'asc']) }}">Sortuj rosnąco</option>
@@ -97,7 +81,7 @@
         </tbody>
     </table>
     <div class="pagination">
-    <p>  {{ $tasks->links() }}</p> 
-</div>
+        <p>{{ $tasks->links() }}</p> 
+    </div>
 </div>
 @endsection

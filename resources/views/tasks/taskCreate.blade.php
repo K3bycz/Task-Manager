@@ -19,10 +19,6 @@
         });
     });
 </script>
-
-    <div class="titleBlock">
-        Formularz tworzenia zadania 
-    </div>
     <div class="formBackground">
 
         <div class="form">

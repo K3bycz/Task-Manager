@@ -30,9 +30,6 @@
     });
 </script>
 
-<div class="titleBlock">
-    Szczegóły zadania
-</div>
     <div class="show">
 
     @if(!empty($task))

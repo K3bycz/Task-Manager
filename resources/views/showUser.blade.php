@@ -1,21 +1,6 @@
 @extends('layout.main')
 
 <style>
-    .titleBlock{
-        font-family: Sans MS, Comic Sans, cursive;
-        font-size: 24;
-        padding-left: 1%;
-        padding-top: 1%;
-        box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-        background-color: #d1d1f6;
-        height: 5%;
-        width:113%;
-        right:14%;
-        position: relative;
-        z-index: 1;
-        text-align: left; 
-    }
-
     .userInfo{
         text-align: center;
         right:14%;
@@ -43,11 +28,7 @@ document.getElementById('imageUpload').addEventListener('change', function () {
 </script>
 
 @section('content')
-    <div class="content">
-
-        <div class="titleBlock">
-            Informacje o zalogowanym użytkowniku
-        </div>
+    <div class="container">
 
         <div class="userInfo">
             <hr>
@@ -70,18 +51,29 @@ document.getElementById('imageUpload').addEventListener('change', function () {
             </form>    
             <hr>
 
-            <div>
-                <a href="{{ route('logout') }}"
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a  href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Wyloguj się
                 </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 @csrf
             </form>
-          
-            </div>    
 
+            </div>    
         </div> 
+        <div class="row">
+        <div class="col-md-6">
+            <p>To jest kolumna 1.</p>
+        </div>
+        <div class="col-md-6">
+            <p>To jest kolumna 2.</p>
+        </div>
     </div>
+    </div>
+    
+    
+
+
 @endsection    
 

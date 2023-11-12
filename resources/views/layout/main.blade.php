@@ -29,15 +29,9 @@
                     </div>
                 </div>
             </div>
-        </div class="row">
-            <div class="titleBlock">
-                Tytuł
-            </div>  
-        </div>
-
         </div>
         <div class="row">
-            <div class="col-md-1">
+            <div class="col-md-1 p-0 m-0">
                 <div class="sidebar">
                     @section('sidebar')
                         <ul class="list-unstyled">
@@ -62,8 +56,15 @@
                 </div>
             </div>
             <div class="col-md-11">
-                <div class="content">
-                    @yield('content')
+                <div class="row">
+                    <div class="titleBlock">
+                        @if (isset($title)) {{ $title }} @else Title @endif
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="content">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         </div>

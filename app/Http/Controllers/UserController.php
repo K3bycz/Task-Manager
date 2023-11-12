@@ -12,8 +12,10 @@ class UserController extends Controller{
     {
         $users = User::select('id', 'firstName', 'lastName', 'email', 'created_at')   //Model
         ->get();
+        $title = "Lista użytkowników";
+        
         return view('users.usersList', [
-            'users' => $users ]);
+            'users' => $users, 'title' => $title]);
     }
 
 }

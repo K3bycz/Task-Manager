@@ -69,7 +69,8 @@ a:hover::before {
     font-family: Arial, sans-serif;
     font-size: 16px;
     text-align: left;
-    padding-top: 10px;
+    padding-top: 10px !important;
+    padding-left:10px !important; 
     height:94vh;
     z-index: 0; 
 }
@@ -87,3 +88,14 @@ a:hover::before {
     z-index: -1;
 }
 
+.titleBlock{
+    font-family: Sans MS, Comic Sans, cursive;
+    font-size: 24;
+    padding: 10px 0px 10px 10px;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+    background-color: #d1d1f6;
+    height: 5%;
+    position: relative;
+    z-index: -1 !important;
+    text-align: left;
+ }

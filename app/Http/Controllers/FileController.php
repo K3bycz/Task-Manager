@@ -27,6 +27,9 @@ class FileController extends Controller
                 'updated_at' => Carbon::now(),]);
                 
         return redirect('user');
+
+        } else {
+            return redirect('user')->with('error', 'Błąd!');
         }
     }
 

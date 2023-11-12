@@ -40,10 +40,6 @@
 
 @section('content')
 
-<div class="titleBlock">
-    Lista Użytkowników
-</div>
-
 <div class="tableBackground">
     <table style="border-collapse: collapse; font-size: 16; width: 100%;">
         <thead>
