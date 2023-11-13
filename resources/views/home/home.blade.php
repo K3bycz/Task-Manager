@@ -1,14 +1,16 @@
 @extends('layout.main')
 @section('content')
-<!-- <head>
+<head>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-</head> -->
-<div class="row">
-    <div class ="col-md-4" style="background-color:red;">
-
-        <div class="titleBox">
-            Zadania na które masz mniej niż tydzień!
-        </div>
+</head>
+<div class="row" style="padding-top:10px">
+    <div class ="col-md-4">
+        <div class="informationBox">
+            <div class="row">
+                <div class="col-md-10 offset-1">
+            <div class="titleBox">
+                Zadania na które masz mniej niż tydzień!
+            </div>
 
         @if(count($lessThan7Days) > 0)
             {{ $count = 0; }}
@@ -47,7 +49,8 @@
             @endforeach
         @else
             <div style="text-align:center;margin-top:10px;">Na szczęście nic Cie nie goni &#128515;</div>
-        @endif  
+        @endif 
+    </div>
     </div>
 
     <div class ="col-md-8">
