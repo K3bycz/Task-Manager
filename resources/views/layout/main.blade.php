@@ -18,20 +18,20 @@
         <div class="row">
             <div class="header">
                 <div class="row">
-                    <div class="col-md-1 clock" style="margin-top:8px;">
+                    <div class="col-3 col-md-1 clock" style="margin-top:8px;">
                         <span id="clock"></span>
                     </div>
-                    <div class="col-md-10" style="text-align:center; padding-top:10px; font-size: 24px;font-family:Comic Sans MS, Comic Sans, cursive;">
+                    <div class="col-7 col-md-10" style="text-align:center; padding-top:10px; font-size: 24px;font-family:Comic Sans MS, Comic Sans, cursive;">
                         @yield('title', $applicationName) 
                     </div>
-                    <div class="col-md-1" style="text-align:right"> 
+                    <div class="col-1 col-md-1" style="text-align:right"> 
                         <a href="/user"> <img src="{{ asset('/images/user.png') }}" alt="User" style="width:45px; height:45px; margin-right:10px;"></a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-1 p-0 m-0">
+            <div class="col-3 col-md-1 p-0 m-0">
                 <div class="sidebar">
                     @section('sidebar')
                         <ul class="list-unstyled">
@@ -55,16 +55,16 @@
                     @show
                 </div>
             </div>
-            <div class="col-md-11">
+            <div class="col-9 col-md-11">
                 <div class="row">
                     <div class="titleBlock">
                         @if (isset($title)) {{ $title }} @else Title @endif
                     </div>  
                 </div>
                 <div class="row">
-                    <div class="content">
+                   
                         @yield('content')
-                    </div>
+                    
                 </div>
             </div>
         </div>
