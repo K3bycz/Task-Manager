@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-12">
                     @if(count($lessThan7Days) > 0)
-                        {{ $count = 0; }}
+                       @php $count = 0; @endphp
                         @foreach($lessThan7Days as $task) 
                             @if($count < 7)
                                 <script>
@@ -34,7 +34,7 @@
                                 </script>
 
                     
-                                <table style="border-collapse: collapse; width: 98%; margin-left:1%;">
+                                    <table style="width:96%; margin:10px 10px 0px 10px">
                                     <tr>
                                         <td style="width: 100%; text-align: center;"><b>{{ $task->title }}</b></td>
                                         <td><b>ID:</b> {{ $task->id }}</td>
@@ -44,7 +44,7 @@
                                         <td><a href="{{ route('tasks.show', ['task' => $task->id]) }}">Szczegóły</a></td>
                                     </tr>
                                 </table>
-                                {{ $count++; }}
+                                @php $count++; @endphp
                             @endif
                         @endforeach
                     @else
@@ -63,10 +63,10 @@
                             Zadania z wysokim priorytetem
                         </div>
                         @if(count($highPriority) > 0)
-                            {{ $count = 0; }}
+                            @php $count = 0; @endphp
                             @foreach($highPriority as $task) 
                                 @if($count < 3)
-                                    <table style="border-collapse: collapse; width: 98%; margin-left:1%;">
+                                    <table style="width:93%; margin:10px 20px 0px 20px">
                                         <tr>
                                             <td style="width: 100%; text-align: center;"><b>{{ $task->title }}</b></td>
                                             <td><b>ID:</b> {{ $task->id }}</td>
@@ -76,7 +76,7 @@
                                             <td><a href="{{ route('tasks.show', ['task' => $task->id]) }}">Szczegóły</a></td>
                                         </tr>
                                     </table>
-                                    {{ $count++; }}
+                                    @php $count++; @endphp
                                 @endif
                             @endforeach
                         @else
@@ -92,12 +92,12 @@
                             Zadania po terminie
                         </div>
                         @if(count($afterTheDeadline) > 0)
-                            {{ $count = 0; }}
+                            @php $count = 0; @endphp
                             @foreach($afterTheDeadline as $task) 
                                 @if($count < 3)
-                                    <table style="border-collapse: collapse; width: 98%; margin-left:1%;">
+                                    <table style="width:93%; margin:10px 20px 0px 20px">
                                         <tr>
-                                            <td style="width: 100%; text-align: center;"><b>{{ $task->title }}</b></td>
+                                            <td style=" text-align: center;"><b>{{ $task->title }}</b></td>
                                             <td><b>ID:</b> {{ $task->id }}</td>
                                         </tr>
                                         <tr>
@@ -105,7 +105,7 @@
                                             <td><a href="{{ route('tasks.show', ['task' => $task->id]) }}">Szczegóły</a></td>
                                         </tr>
                                     </table>
-                                    {{ $count++; }}
+                                    @php $count++; @endphp
                                 @endif
                             @endforeach
                         @else
