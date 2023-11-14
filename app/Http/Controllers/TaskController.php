@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use App\Models\TaskModel;
 use Illuminate\Support\Facades\Auth;
@@ -105,13 +106,32 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request;
+        $title ="Dodaj nowe zadanie";
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'title' => 'required|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:50',
+            'category' => 'required',
+            'status' => 'required',
+            'priority' => 'required',
+            'deadline' => 'nullable',
+            'description' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:250',
+            'user_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/tasks/create')
+                ->with(['title' => $title,])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         TaskModel::create([
             'title' => $data['title'],
-            'category' => $data['category'] ?? null,
-            'status' => $data['status'] ?? null,
+            'category' => $data['category'],
+            'status' => $data['status'],
             'deadline' => $data['deadline'] ?? null, 
-            'priority' => $data['priority'] ?? null,
+            'priority' => $data['priority'],
             'description' => $data['description']?? null, 
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

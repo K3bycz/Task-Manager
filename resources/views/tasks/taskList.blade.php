@@ -1,6 +1,8 @@
 @extends('layout.main')
 @section('content')
-
+<head>
+    <link rel="stylesheet" href="{{ asset('css/taskList.css') }}">
+</head>
 @if($tasks->isEmpty())
     <div class="row" style="margin-top:40px;">
         <div class="col-md-2 offset-5 error">
@@ -8,21 +10,7 @@
         </div>
     </div>
 @else
-    <div class="row" style="margin-top:15px">
-        <div class="col-md-2 offset-5">
-            <div class="sortMenu"> 
-                <label class="form-label" for="sortSelect">Filtry:</label>
-                <select class="form-field" id="sortSelect" onchange="window.location.href = this.value;">
-                    <option value=""></option>
-                    <option value="{{ route('tasks.list', ['sort_by' => 'id', 'sort_order' => 'asc']) }}">Sortuj rosnąco</option>
-                    <option value="{{ route('tasks.list', ['sort_by' => 'id', 'sort_order' => 'desc']) }}">Sortuj malejąco </option>
-                    <option value="{{ route('tasks.list', ['sort_by' => 'title', 'sort_order' => 'asc']) }}">Tytuł a-z</option>
-                    <option value="{{ route('tasks.list', ['sort_by' => 'title', 'sort_order' => 'desc']) }}">Tytuł z-a</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="row">
+    <div class="row" style="margin-top:10px;">
         <div class="col-md-8 offset-2">
             <div class="tableBackground">
                 <div class="row">
@@ -57,6 +45,18 @@
                     </div>
                 </div>
             </div>  
+        </div>
+        <div class="col-md-2">
+            <div class="sortMenu"> 
+                <label class="form-label" for="sortSelect">Filtry:</label>
+                <select class="form-field" id="sortSelect" onchange="window.location.href = this.value;">
+                    <option value=""></option>
+                    <option value="{{ route('tasks.list', ['sort_by' => 'id', 'sort_order' => 'asc']) }}">Sortuj rosnąco</option>
+                    <option value="{{ route('tasks.list', ['sort_by' => 'id', 'sort_order' => 'desc']) }}">Sortuj malejąco </option>
+                    <option value="{{ route('tasks.list', ['sort_by' => 'title', 'sort_order' => 'asc']) }}">Tytuł a-z</option>
+                    <option value="{{ route('tasks.list', ['sort_by' => 'title', 'sort_order' => 'desc']) }}">Tytuł z-a</option>
+                </select>
+            </div>
         </div>
     </div>
 @endif
