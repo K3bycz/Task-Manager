@@ -78,7 +78,7 @@ class TaskController extends Controller
         $tasks = TaskModel::select('id', 'title', 'category', 'status')
             ->where('user_id',  Auth::id())
             ->orderBy($sortBy, $sortOrder)
-            ->simplePaginate(18); 
+            ->Paginate(16); 
             
         $title="Lista wszystkich zadań";
 
