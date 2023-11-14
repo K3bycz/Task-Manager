@@ -143,6 +143,23 @@ class TaskController extends Controller
     public function update(Request $request, int $taskId) 
     {
         $data = $request->all();
+        $title ="Zadanie nr.".$taskId;
+        
+        $validator = Validator::make($data, [
+            'title' => 'required|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:50',
+            'category' => 'required',
+            'status' => 'required',
+            'priority' => 'nullable',
+            'deadline' => 'nullable',
+            'description' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:250',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/tasks/create')
+                ->with(['title' => $title,])
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         TaskModel::find($taskId)
             ->update([

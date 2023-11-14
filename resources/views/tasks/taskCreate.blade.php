@@ -1,24 +1,7 @@
 @extends('layout.main')
-
-<head>
-    <link rel="stylesheet" href="{{ asset('css/taskCreate.css') }}">
-</head>
-
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/taskCreate.css') }}">
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const priorytetCheckbox = document.getElementById('deadlineCheckbox');
-        const deadlineInputContainer = document.getElementById('deadlineInputContainer');
-
-        priorytetCheckbox.addEventListener('change', function () {
-            if (this.checked) {
-                deadlineInputContainer.style.display = 'block';
-            } else {
-                deadlineInputContainer.style.display = 'none';}
-        });
-    });
-</script>
 <div class="row">
     <div class="col-md-6 offset-3">
         <div class="form">
@@ -98,4 +81,19 @@
        </div>
     </div>    
 </div>
+
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const priorytetCheckbox = document.getElementById('deadlineCheckbox');
+        const deadlineInputContainer = document.getElementById('deadlineInputContainer');
+
+        priorytetCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                deadlineInputContainer.style.display = 'block';
+            } else {
+                deadlineInputContainer.style.display = 'none';}
+        });
+    });
+</script>
