@@ -4,37 +4,9 @@
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
 }
 
-.highPriorityTasks{
-    background-color: #d1d1f6; 
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-    height: 40%;
-    width: 32%;
-    float: left;
-    margin-top: 1%;
-    margin-left: 1%;
-}
-
 td{
     font-weight: normal;
     padding: 4px 10px;
     border-style: solid;
     border-width: 1px;
-}
-
-.summary{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    background-color: #d1d1f6; 
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-    height: 35%;
-    width: 65%;
-    padding-bottom: 1%;
-    margin-top: 24.5%;
-    margin-left: 34%;
-}
-
-.countBox {
-    background-color: #bcbcf2;
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
 }
