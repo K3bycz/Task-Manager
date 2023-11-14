@@ -80,16 +80,16 @@
                         </form> 
                         @if ($errors->has('title'))
                         <div class="alert">
-                            Wprowadzono błędny tytuł
+                            Wprowadzono błędny tytuł!
                         </div>
-                        @elseif ($errors->has('title'))
+                        @elseif ($errors->has('description'))
                         <div class="alert">
-                            Wprowadzono błędny tytuł
+                            Wprowadzono błędny opis!
                         </div>
                         @endif
                         @if(session('success'))
                             <div class="alert">
-                                <br>{{ session('success') }}
+                                {{ session('success') }}
                             </div>
                         @endif
                     </div>

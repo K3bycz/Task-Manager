@@ -1,8 +1,7 @@
 @extends('layout.main')
 @section('content')
-<head>
-    <link rel="stylesheet" href="{{ asset('css/taskList.css') }}">
-</head>
+<link rel="stylesheet" href="{{ asset('css/taskList.css') }}">
+
 @if($tasks->isEmpty())
     <div class="row" style="margin-top:40px;">
         <div class="col-md-2 offset-5 error">

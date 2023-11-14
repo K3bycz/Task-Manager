@@ -18,7 +18,7 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
     Route::delete('/tasks/{taskId}', 'TaskController@destroy')->name('tasks.destroy');
 
     //USERS
-    Route::get('/users', 'UserController@userList');
+    Route::get('/users', 'UserController@userList')->name('users.list');
 
     Route::get('users/{userId}', 'UserController@show')->name ('get.user.showUser');
 

@@ -79,7 +79,7 @@ class TaskController extends Controller
         $tasks = TaskModel::select('id', 'title', 'category', 'status')
             ->where('user_id',  Auth::id())
             ->orderBy($sortBy, $sortOrder)
-            ->Paginate(16); 
+            ->Paginate(10); 
             
         $title="Lista wszystkich zadań";
 
@@ -113,10 +113,9 @@ class TaskController extends Controller
             'title' => 'required|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:50',
             'category' => 'required',
             'status' => 'required',
-            'priority' => 'required',
+            'priority' => 'nullable',
             'deadline' => 'nullable',
             'description' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:250',
-            'user_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -131,13 +130,13 @@ class TaskController extends Controller
             'category' => $data['category'],
             'status' => $data['status'],
             'deadline' => $data['deadline'] ?? null, 
-            'priority' => $data['priority'],
+            'priority' => $data['priority'] ?? null,
             'description' => $data['description']?? null, 
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'user_id' => Auth::user()->id,
         ]);
-
+        
         return redirect()->route('tasks.create')->with('success', 'Zadanie zostało dodane.');
     }
 

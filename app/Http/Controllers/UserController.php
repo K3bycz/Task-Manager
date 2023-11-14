@@ -9,9 +9,14 @@ use App\Models\User;
 class UserController extends Controller{
 
     public function userList(Request $request) //http://localhost:8000/users
-    {
-        $users = User::select('id', 'firstName', 'lastName', 'email', 'created_at')   //Model
-        ->get();
+    {   
+        $sortBy = request('sort_by', 'id'); 
+        $sortOrder = request('sort_order', 'asc');
+
+        $users = User::select('id', 'firstName', 'lastName', 'email', 'created_at')
+        ->orderBy($sortBy, $sortOrder)
+        ->Paginate(16);
+
         $title = "Lista użytkowników";
         
         return view('users.usersList', [
