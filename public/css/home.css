@@ -1,10 +1,10 @@
 
-.informationBox{
+.informationBox {
     background-color: #d1d1f6; 
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
 }
 
-td{
+td {
     font-weight: normal;
     padding: 4px 10px;
     border-style: solid;
