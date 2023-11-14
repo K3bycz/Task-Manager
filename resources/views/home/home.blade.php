@@ -57,7 +57,7 @@
     <div class ="col-md-8">
         <div class="row">
             <div class="col-md-6">
-                <div class="informationBox" style="height:40vh">
+                <div class="informationBox" style="height:44vh">
                     <div class="row">
                         <div class="col-md-10 offset-1" style="margin-top:5px; background-color: #9191e9; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);text-align: center;  font-family: Sans MS, Comic Sans, cursive; font-size: 20px;">
                             Zadania z wysokim priorytetem
@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div class="col-md-6">                
-                <div class="informationBox" style="margin-right:15px; height:40vh">
+                <div class="informationBox" style="margin-right:15px; height:44vh">
                     <div class="row">
                         <div class="col-md-10 offset-1" style="margin-top:5px; background-color: #9191e9; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);text-align: center;  font-family: Sans MS, Comic Sans, cursive; font-size: 20px;">
                             Zadania po terminie
@@ -116,66 +116,114 @@
             </div>
         </div>
         <div class="row" style="margin:0; margin-right:15px;">
-            <div class="informationBox" style="margin-top:10px; height:45vh">    
-                <div class="col-md-12"> 
-                    <div class="row">       
-                        <div class="col-md-4">     
-                            <div class="row">
-                                <div class="col-10 offset-1">
-                                    <div style="text-align: left; font-size: 19;">
-                                        Liczba wszystkich zadań:<br>
+            <div class="informationBox" style="margin-top:2vh; height:40vh"> 
+                <div class="container-fluid">   
+                    <div class="col-md-12"> 
+                        <div class="row" style="margin-top:10px; height:22vh">   
+                            <div class="col-md-4">     
+                                <div class="row" style="background-color:#bcbcf2; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5); margin-right:5px; margin-left:5px;">
+                                    <div class="col-10 offset-1" style="margin-top:5px; background-color: #9191e9; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);">
+                                        <div style="text-align: center; font-size: 19;">
+                                            Liczba wszystkich zadań: 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="background-color:#bcbcf2; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5); padding-bottom:25px; margin-right:5px; margin-left:5px;">
+                                    <div class="col-1 offset-2" style="font-size:32px; margin-top:25px;">
                                         {{ $tasksCount }}
                                     </div>
-                                    <img src="{{ asset('/images/task.png') }}" alt="TaskIcon" style="width: 55px; height: 65px; left: 81%; bottom:95%; position: relative;">
+                                    <div class="col-2 offset-6">
+                                        <img src="{{ asset('/images/task.png') }}" alt="TaskIcon" style="width: 55px; height: 65px; margin-top:15px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">     
+                                <div class="row" style="background-color:#bcbcf2; margin-right:5px; margin-left:5px; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5)">
+                                    <div class="col-10 offset-1" style="margin-top:5px; background-color: #9191e9; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);">
+                                        <div style="text-align: center; font-size: 19;">
+                                            Liczba zadań w pracy: 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="background-color:#bcbcf2; margin-right:5px; margin-left:5px; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5); padding-bottom:30px;">
+                                    <div class="col-1 offset-2" style="font-size:32px; margin-top:25px;">
+                                        {{ $countJob }}
+                                    </div>
+                                    <div class="col-2 offset-6">
+                                        <img src="{{ asset('/images/job.png') }}" alt="TaskIcon" style="width: 60px; height: 60px; margin-top:15px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">     
+                                <div class="row" style="margin-right:5px; margin-left:5px; background-color:#bcbcf2; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5)">
+                                    <div class="col-10 offset-1" style="margin-top:5px; background-color: #9191e9; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);">
+                                        <div style="text-align: center; font-size: 19;">
+                                            Liczba zadań ukończonych: 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-right:5px; margin-left:5px; background-color:#bcbcf2; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5); padding-bottom:30px;">
+                                    <div class="col-1 offset-2" style="font-size:32px; margin-top:25px;">
+                                        {{ $countDone }}
+                                    </div>
+                                    <div class="col-2 offset-6">
+                                        <img src="{{ asset('/images/checkmark.png') }}" alt="TaskIcon" style="width: 60px; height: 60px; margin-top:15px;">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">  
-                            <div class="countBox">
-                                <div style="text-align: left; font-size: 19;">
-                                    Liczba zadań w pracy:<br>
-                                    {{ $countJob }}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">     
+                            <div class="row" style="background-color:#bcbcf2; margin-right:5px; margin-left:5px; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5)">
+                                <div class="col-10 offset-1" style="margin-top:5px; background-color: #9191e9; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);">
+                                    <div style="text-align: center; font-size: 19;">
+                                        Liczba zadań na studia: 
+                                    </div>
                                 </div>
-                                <img src="{{ asset('/images/job.png') }}" alt="TaskIcon" style="width: 60px; height: 60px; left: 80%; bottom:90%; position: relative;">
                             </div>
-                        </div>
-                        <div class="col-md-4">  
-                            <div class="countBox">
-                                <div style="text-align: left; font-size: 19;">
-                                    Liczba zadań ukończonych:<br>
-                                    {{ $countDone }}
+                            <div class="row" style="background-color:#bcbcf2; margin-right:5px; margin-left:5px; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5); padding-bottom:20px;">
+                                <div class="col-1 offset-2" style="font-size:32px; margin-top:25px;">
+                                    {{ $countStudy }}
                                 </div>
-                                <img src="{{ asset('/images/checkmark.png') }}" alt="TaskIcon" style="width: 60px; height: 60px; left: 80%; bottom:90%; position: relative;">
+                                <div class="col-2 offset-6">
+                                    <img src="{{ asset('/images/hat.png') }}" alt="TaskIcon" style="width: 70px; height: 70px; margin-top:15px;">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">  
-                        <div class="countBox">
-                            <div style="text-align: left; font-size: 19;">
-                                Liczba zadań na studia:<br>
-                                {{ $countStudy }}
+                        <div class="col-md-4 mb-3">     
+                            <div class="row" style="background-color:#bcbcf2; margin-right:5px; margin-left:5px; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5)">
+                                <div class="col-10 offset-1" style="margin-top:5px; background-color: #9191e9; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);">
+                                    <div style="text-align: center; font-size: 19;">
+                                        Liczba zadań w domu: 
+                                    </div>
+                                </div>
                             </div>
-                            <img src="{{ asset('/images/hat.png') }}" alt="TaskIcon" style="width: 70px; height: 70px; left: 80%; bottom:95%; position: relative;">
+                            <div class="row" style="background-color:#bcbcf2; margin-right:5px; margin-left:5px; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5); padding-bottom:30px;">
+                                <div class="col-1 offset-2" style="font-size:32px; margin-top:25px;">
+                                    {{ $countHome }}
+                                </div>
+                                <div class="col-2 offset-6">
+                                    <img src="{{ asset('/images/house.png') }}" alt="TaskIcon" style="width: 60px; height: 60px; margin-top:15px;">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">  
-                        <div class="countBox">
-                            <div style="text-align: left; font-size: 19;">
-                                Liczba zadań w domu:<br>
-                                {{ $countHome }}
+                        <div class="col-md-4 mb-3">     
+                            <div class="row" style="background-color:#bcbcf2; margin-right:5px; margin-left:5px; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5)">
+                                <div class="col-10 offset-1" style="margin-top:5px; background-color: #9191e9; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);">
+                                    <div style="text-align: center; font-size: 19;">
+                                        Zadania w hobby:
+                                    </div>
+                                </div>
                             </div>
-                            <img src="{{ asset('/images/house.png') }}" alt="TaskIcon" style="width: 60px; height: 60px; left: 80%; bottom:90%; position: relative;">
-                        </div>
-                    </div>
-                    <div class="col-md-4">  
-                        <div class="countBox">
-                            <div style="text-align: left; font-size: 19;">
-                                Liczba zadań związanych z hobby:<br>
-                                {{ $countHobby }}
+                            <div class="row" style="background-color:#bcbcf2; margin-right:5px; margin-left:5px; box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5); padding-bottom:30px;">
+                                <div class="col-1 offset-2" style="font-size:32px; margin-top:25px;">
+                                    {{ $countHobby }}
+                                </div>
+                                <div class="col-2 offset-6">
+                                    <img src="{{ asset('/images/hen.png') }}" alt="TaskIcon" style="width: 60px; height: 60px; margin-top:15px;">
+                                </div>
                             </div>
-                            <img src="{{ asset('/images/hen.png') }}" alt="TaskIcon" style="width: 60px; height: 60px; left: 80%; bottom:90%; position: relative;">
                         </div>
                     </div>
                 </div>
