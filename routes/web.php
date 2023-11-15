@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
     Route::match(['get', 'post'], "/upload", 'FileController@upload')->name('file.upload');
     Route::match(['get', 'post'], "/view", 'FileController@viewAvatar')->name('view.avatar');
 });
-
+Route::match(['get', 'post'], '/logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 
 

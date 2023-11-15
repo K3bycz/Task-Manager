@@ -1,8 +1,7 @@
 @extends('layout.main')
 @section('content')
-<head>
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-</head>
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+
 <div class="row" style="padding-top:10px">
     <div class ="col-md-4">
         <div class="informationBox" style="height:86vh";>

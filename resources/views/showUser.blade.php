@@ -1,11 +1,27 @@
 @extends('layout.main')
-
 @section('content')
-    <div class="row justify-content-center align-items-center">
-        <div class="col-md-12">
-            <div class="container text-center">
-                <div class="user-background">
-                    <hr><h1>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</h1>
+<link rel="stylesheet" href="{{ asset('css/showUser.css') }}">
+<style>
+.logout a {
+    background-image: none;
+    color: white; 
+    -webkit-background-clip: initial; 
+    -webkit-text-fill-color: initial;
+    transition: none;
+  }
+  
+.logout a::before{
+    background:none;
+    transition:none;
+}
+</style>
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-md-3 order-1 mt-4 pb-2"> </div>
+        <div class="col-md-3 order-3 mt-4 pb-2"> </div>
+        <div class="col-md-6 order-2">
+            <div class="row user-background mt-4"  style="height:200px;background-color:#333333; color:white">
+                <div class="col-md-3">
                     @if ($avatar != null)
                         <img src="data:image/jpeg;base64,{{ base64_encode($avatar) }}" alt="Avatar"
                             style="border-radius: 100px; width: 150px; height: 150px; margin-top: 10px; margin-bottom: 25px;">
@@ -13,35 +29,75 @@
                         <img src="{{ asset('/images/user.png') }}" alt="User"
                             style="border-radius: 100px; width: 150px; height: 150px; margin-top: 10px; margin-bottom: 25px;">
                     @endif
-                    <p><b>ID użytkownika = {{ Auth::id() }}</b></p>
+                </div>
+                <div class="col-md-8">
+                <h1>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</h1>
+                <p class="mt-2">
+                    @if (isset(Auth::user()->bio)) 
+                        {{ Auth::user()->bio }}
+                    @else
+                        Nie podano informacji </p>
+                    @endif
+                </div>
+                <div class="col-md-1">
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-primary" style="background:none; border:none;" data-bs-toggle="modal" data-bs-target="#formModal">
+                                <i class="bi bi-gear mt-3" style="font-size:32px"></i>
+                            </button>
+                            <!-- MODAL -->
+                            <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true"  style="color:black">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="formModalLabel">Edytuj profil</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Ustaw nowe zdjęcie profilowe:</p>
+                                            <form method="POST" style="padding:5px;" action="{{ route('file.upload') }}" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="file" id="imageUpload" style="position:relative; left:1.5%" name="avatar"> <br>
+                                                <button type="submit" class="btn btn-secondary mt-1">
+                                                    Prześlij zdjęcie
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                                            <button type="button" class="btn btn-primary">Zapisz zmiany</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /MODAL -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 logout">
+                        <a href="/logout"><i class="bi bi-door-open" style="font-size:32px; margin-left:13px"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row user-info pt-3" style="background-color:#333333; color:white">
+                <div class="col-md-6 pb-4">
+                    <p class="m-0 p-0">ID użytkownika = {{ Auth::id() }}</p>
+                    <p class="m-0 p-0">Adres e-mail użytkownika = {{ Auth::user()->email }}</p>
+                    <p class="m-0 p-0">Data założenia konta = {{ Auth::user()->created_at}}</p>
+                </div>
+                <div class="col-md-6">
+                    @if (isset(Auth::user()->country))
+                        <p class="m-0 p-0">Kraj pochodzenia:</p>
+                    @elseif (isset(Auth::user()->region))
+                        <p class="m-0 p-0">Region:</p>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="container text-center">
-                <hr>
-                <p>Ustaw nowe zdjęcie profilowe:</p>
-                <form method="POST" style="padding:5px;" action="{{ route('file.upload') }}" enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" id="imageUpload" style="position:relative; left:1.5%" name="avatar"> <br>
-                    <button type="submit"
-                        style="padding:5px; margin-top:10px; background-color:#9191e9; border-radius:10px;">Prześlij
-                        zdjęcie</button>
-                </form>
-                <hr>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    Wyloguj się
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                    @csrf
-                </form>
-                
-            </div>
-        </div>
-    </div>
+</div>
 @endsection
 
 <script>
