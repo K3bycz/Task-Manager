@@ -9,6 +9,7 @@
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+        <link href="{{ asset('/css/bootstrap-icons.css') }}" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('js/clock.min.js') }}"></script>
