@@ -2,7 +2,7 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/showUser.css') }}">
 <style>
-.logout a {
+.icon a {
     background-image: none;
     color: white; 
     -webkit-background-clip: initial; 
@@ -10,7 +10,7 @@
     transition: none;
   }
   
-.logout a::before{
+.icon a::before{
     background:none;
     transition:none;
 }
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 logout">
+                        <div class="col-12 icon">
                         <a href="/logout"><i class="bi bi-door-open" style="font-size:32px; margin-left:13px"></i></a>
                         </div>
                     </div>
@@ -87,17 +87,30 @@
                     <p class="m-0 p-0">Adres e-mail użytkownika = {{ Auth::user()->email }}</p>
                     <p class="m-0 p-0">Data założenia konta = {{ Auth::user()->created_at}}</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     @if (isset(Auth::user()->country))
                         <p class="m-0 p-0">Kraj pochodzenia:</p>
                     @elseif (isset(Auth::user()->region))
                         <p class="m-0 p-0">Region:</p>
                     @endif
                 </div>
+                <div class="col-md-1 icon">
+                    <a href="/sendMail"><i class="bi bi-envelope" style="font-size:32px; margin-left:13px"></i></a>
+                </div>
             </div>
         </div>
     </div>
+    @if (session('message'))
+    <div class="row">
+        <div class="col-md-4 offset-4">
+            <div class="alert alert-success mt-4">
+                {{ session('message') }}
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
+
 @endsection
 
 <script>
