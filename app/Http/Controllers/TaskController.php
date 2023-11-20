@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use App\Models\TaskModel;
 use Illuminate\Support\Facades\Auth;
@@ -64,8 +65,11 @@ class TaskController extends Controller
             ->where('user_id',  Auth::id())
             ->where('category','Hobby')
             ->count();
-            
-        return view('home.home', compact('lessThan7Days','highPriority','afterTheDeadline','tasksCount','countDone','countHome','countJob','countStudy','countHobby'));}
+        
+        $title = "Pulpit";
+
+        return view('home.home', compact('lessThan7Days','highPriority','afterTheDeadline','tasksCount','countDone','countHome','countJob','countStudy','countHobby', 'title'));
+    }
 
     public function index(): View
     {
@@ -75,45 +79,87 @@ class TaskController extends Controller
         $tasks = TaskModel::select('id', 'title', 'category', 'status')
             ->where('user_id',  Auth::id())
             ->orderBy($sortBy, $sortOrder)
-            ->simplePaginate(18); 
+            ->Paginate(10); 
+            
+        $title="Lista wszystkich zadań";
 
         return view('tasks.taskList', [
-            'tasks' => $tasks ]);
+            'tasks' => $tasks, 'title' => $title]);
     }
 
     public function show(int $taskId)
     {   
         $task = TaskModel::where('id', $taskId)->first();
 
-        return view('tasks.showTask',[
-            'task' => $task]); 
+        $title = "Zadanie nr.".$taskId;
+
+        return view('tasks.showTask', [
+            'task' => $task, 'title' => $title ]); 
     }
 
     public function create() 
     {
-        return view('tasks.taskCreate');}
+        $title ="Dodaj nowe zadanie";
+        return view('tasks.taskCreate',[
+            'title' => $title]);
+    }
 
     public function store(Request $request)
     {
-    $data = $request;
-    TaskModel::create([
-        'title' => $data['title'],
-        'category' => $data['category'] ?? null,
-        'status' => $data['status'] ?? null,
-        'deadline' => $data['deadline'] ?? null, 
-        'priority' => $data['priority'] ?? null,
-        'description' => $data['description']?? null, 
-        'created_at' => Carbon::now(),
-        'updated_at' => Carbon::now(),
-        'user_id' => Auth::user()->id,
-    ]);
+        $title ="Dodaj nowe zadanie";
+        $data = $request->all();
 
-    return redirect()->route('tasks.create')->with('success', 'Zadanie zostało dodane.');
+        $validator = Validator::make($data, [
+            'title' => 'required|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:50',
+            'category' => 'required',
+            'status' => 'required',
+            'priority' => 'nullable',
+            'deadline' => 'nullable',
+            'description' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:250',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/tasks/create')
+                ->with(['title' => $title,])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        TaskModel::create([
+            'title' => $data['title'],
+            'category' => $data['category'],
+            'status' => $data['status'],
+            'deadline' => $data['deadline'] ?? null, 
+            'priority' => $data['priority'] ?? null,
+            'description' => $data['description']?? null, 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'user_id' => Auth::user()->id,
+        ]);
+        
+        return redirect()->route('tasks.create')->with('success', 'Zadanie zostało dodane.');
     }
 
     public function update(Request $request, int $taskId) 
     {
         $data = $request->all();
+        $title ="Zadanie nr.".$taskId;
+        
+        $validator = Validator::make($data, [
+            'title' => 'required|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:50',
+            'category' => 'required',
+            'status' => 'required',
+            'priority' => 'nullable',
+            'deadline' => 'nullable',
+            'description' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:250',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/tasks/create')
+                ->with(['title' => $title,])
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         TaskModel::find($taskId)
             ->update([
@@ -125,7 +171,9 @@ class TaskController extends Controller
                 'description' => $data['description'] ?? null,
                 'updated_at' => Carbon::now(),
         ]);
-        return redirect()->route('tasks.list')->with('success', 'Zadanie zostało zaktualizowane.');}
+        
+        return redirect()->route('tasks.list')->with('success', 'Zadanie zostało zaktualizowane.');
+    }
 
     public function destroy(Request $request, int $taskId) 
     {
@@ -134,5 +182,6 @@ class TaskController extends Controller
         TaskModel::find($taskId)
             ->delete();
     
-    return redirect()->route('tasks.list')->with('success', 'Zadanie zostało usunięte.');}
+        return redirect()->route('tasks.list')->with('success', 'Zadanie zostało usunięte.');
+    }
 }

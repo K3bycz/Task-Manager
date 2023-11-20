@@ -1,9 +1,113 @@
 @extends('layout.main')
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/taskCreate.css') }}">
 
-<head>
-    <link rel="stylesheet" href="{{ asset('css/showTask.css') }}">
-</head>
+    @if(!empty($task))
+    
+        <div class="row">
+            <div class="col-md-6 offset-3">
+                <div class="form">
+                    <div class="row">
+                        <div class="col-md-8 offset-2">
+                            <div class="container">
+                                <form method="POST">
+                                    @csrf
+                                    @method('PUT') 
+                                    <div class="row">
+                                        <div class="col-md-2 id_box">
+                                            ID: {{ $task->id }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12" style="margin-top:10px;">
+                                            <p>Nazwa zadania<br> <input required type=text name="title" value="{{$task->title}}"></p> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <p>Kategoria<br> 
+                                                <select name="category" id="select" value="{{ $task->category }}">
+                                                    <option value="Praca">Praca</option>
+                                                    <option value="Studia">Studia</option>
+                                                    <option value="Dom">Dom</option>
+                                                    <option value="Hobby">Hobby</option>
+                                                    <option value="Inne">Inne</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                        <div class="col-4 offset-1">
+                                            <p>Status<br>
+                                                <select name="status" id="select" value="{{ $task->status }}">
+                                                    <option value="Nowe">Nowe</option>
+                                                    <option value="W trakcie">W trakcie</option>
+                                                    <option value="Zakończone">Zakończone</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p><input type="checkbox" name="deadline" id="deadlineCheckbox" style="width: 20px; height: 20px;" {{ $task->deadline ? 'checked' : '' }}/>Deadline</p>
+                                            <p id="deadlineInputContainer" style="display: none"> 
+                                                <input type="datetime-local" name="deadline" value="{{ $task->deadline }}">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p><input type="checkbox" name="priority" style="width: 20px; height: 20px;" {{ $task->priority ? 'checked' : '' }}/>Wysoki Priorytet</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p>Opis zadania <br> <textarea name="description" placeholder="(max. 250 znaków)">{{$task->description}}</textarea></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 order-3" style="text-align:right">
+                                            <button type="submit" class="formLink formButton" style="margin-bottom:20px;">Zapisz zmiany</button>
+                                        </div>
+                                    </form>
+                                        <div class="col-4 order-2" style="text-align:center">
+                                            <form method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="formLink formButton"  onclick="return confirm ('Czy na pewno chcesz usunąć to zadanie?')">Usuń zadanie</button>
+                                            </form> 
+                                        </div>
+                                        <div class="col-4 order-1" style="text-align:left">
+                                            <button class="formLink"><a href="/tasks" class=>&#x2190; Wróc do listy</a></button>
+                                        </div>
+                                    </div>
+                                @if ($errors->has('title'))
+                                <div class="alert">
+                                    Wprowadzono błędny tytuł!
+                                </div>
+                                @elseif ($errors->has('description'))
+                                <div class="alert">
+                                    Wprowadzono błędny opis!
+                                </div>
+                                @endif
+                                @if(session('success'))
+                                    <div class="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>    
+        </div>
+    @else
+    <div class="row" style="margin-top:40px;">
+        <div class="col-md-2 offset-5 error">
+            Nie udało się załadować szczegółów zadania!
+        </div>
+    </div>
+    @endif
+
+@endsection
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -29,75 +133,3 @@
         }
     });
 </script>
-
-<div class="titleBlock">
-    Szczegóły zadania
-</div>
-    <div class="show">
-
-    @if(!empty($task))
-        <form method="POST">
-            @csrf
-            @method('PUT') 
-            
-        <div class="form">
-            <p><br></p>
-            <div class="id_box"> ID: {{ $task->id }}</div><br>
-
-            <div id="title_box">
-                Nazwa zadania<br> <input type=text name=title value="{{$task->title}}">
-            </div><br>
-
-            <div class="category_box">
-                Kategoria <br><select name="category" id="select" value="{{ $task->category }}">
-                    <option {{ $task->category === 'Praca' ? 'selected' : '' }}> Praca </option>
-                    <option {{ $task->category === 'Studia' ? 'selected' : '' }}> Studia </option>
-                    <option {{ $task->category === 'Dom' ? 'selected' : '' }}> Dom </option>
-                    <option {{ $task->category === 'Hobby' ? 'selected' : '' }}> Hobby </option>
-                    <option {{ $task->category === 'Inne' ? 'selected' : '' }}> Inne </option>
-                </select><br>
-            </div>
-
-            <div class="status_box">
-                Status <br><select name="status" id="select" value="{{ $task->status }}">
-                    <option {{ $task->status === 'Nowe' ? 'selected' : '' }}> Nowe </option>
-                    <option {{ $task->status === 'W trakcie' ? 'selected' : '' }}> W trakcie </option>
-                    <option {{ $task->status === 'Zakończone' ? 'selected' : '' }}> Zakończone </option>
-                </select><br>
-            </div>
-
-            <div class="create_date_box">Data utworzenia zadania: {{$task->created_at}}</div>
-
-            <div class="deadline">
-                <input type="checkbox" name="deadline" id="deadlineCheckbox" {{ $task->deadline ? 'checked' : '' }} style="width: 20px; height: 20px;"/>Deadline
-                <p id="deadlineInputContainer" style="display: none"> 
-                <input type="datetime-local" name="deadline" value="{{ $task->deadline }}">
-                </p>
-            </div>
-
-            <p><input type="checkbox" name="priority" {{ $task->priority ? 'checked' : '' }} style="width: 20px; height: 20px;"/>Wysoki Priorytet</p>
-            
-            <p>Opis zadania <br> <textarea name=description>{{$task->description}}</textarea></p>
-
-           
-            <button type="submit" class="editTask">Zapisz zmiany</button> 
-            </form>
-
-            <form method="POST">
-                @method('DELETE')
-                @csrf
-                <button type="submit" class="deleteTask"  onclick="return confirm ('Czy na pewno chcesz usunąć to zadanie?')">Usuń zadanie</button>
-            </form> 
-
-            <div class="backToList"><a href="/tasks" >&#x2190; Powrót do listy zadań</a></div>
-
-        </div> 
-                                
-        
-            
-    </div>  
-
-@else
-    <div class="error">BŁĄD! -- Nie udało się pobrać informacji o zadaniu</div>
-@endif
-@endsection

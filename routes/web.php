@@ -3,6 +3,8 @@
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
+
+
 Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytkownika
     
     //TASKS 
@@ -18,7 +20,7 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
     Route::delete('/tasks/{taskId}', 'TaskController@destroy')->name('tasks.destroy');
 
     //USERS
-    Route::get('/users', 'UserController@userList');
+    Route::get('/users', 'UserController@userList')->name('users.list');
 
     Route::get('users/{userId}', 'UserController@show')->name ('get.user.showUser');
 
@@ -27,8 +29,11 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
     //FILES
     Route::match(['get', 'post'], "/upload", 'FileController@upload')->name('file.upload');
     Route::match(['get', 'post'], "/view", 'FileController@viewAvatar')->name('view.avatar');
-});
 
+    //MAILS
+    Route::get('/sendMail', [App\Http\Controllers\MailController::class, 'sendMail'])->name('send.mail');
+});
+Route::match(['get', 'post'], '/logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 
 
