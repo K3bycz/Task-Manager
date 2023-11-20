@@ -4,7 +4,7 @@
 
 @if($tasks->isEmpty())
     <div class="row" style="margin-top:40px;">
-        <div class="col-md-2 offset-5 error">
+        <div class="col-md-2 offset-5 error p-3">
             Nie udało się załadować żadych zadań!
         </div>
     </div>
