@@ -1,33 +1,28 @@
 @extends('layout.auth')
 
 @section('content')
-<head>
-    <link rel="stylesheet" href="{{ asset('css/Auth/login.css') }}">
-</head>
-
-    <div><h2>Zresetuj hasło</h2></div>
-
-    @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
-
-    <form method="POST" action="{{ route('password.email') }}">
-    @csrf
-
-        <input id="email" type="email" class="form-control resetPassword @error('email') is-invalid @enderror" name="email" placeholder="Podaj adres email" required autocomplete="email" autofocus><br>
-
-        @error('email')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-                        
-        <button type="submit" class="submitButton resetPasswordSend">
-            Wyślij
-        </button>
-                        
-    </form>
+<div class="container">
+    <h2 class="mt-3 mb-3">Zresetuj hasło</h2>
+    <div class="row">
+        <form method="POST" action="{{ route('password.email') }}">
+        @csrf
+            <input id="email" type="email" class="form-control resetPassword @error('email') is-invalid @enderror" name="email" placeholder="Podaj adres email" required autocomplete="email" autofocus><br>
+            <div class="col-6 offset-3" style="text-align:center">                   
+                <button type="submit" class="button m-2">
+                    Wyślij
+                </button>
+            </div>                   
+        </form>
+        @if ($errors->has('email'))
+            <div class="alert alert-danger col-6 offset-3">
+                Wprowadzono błędny email.
+            </div>
+        @elseif (session('status'))
+            <div class="alert alert-success col-6 offset-3">
+                {{ session('status') }}
+            </div>
+        @endif
+    </div>
+</div>
 
 @endsection
