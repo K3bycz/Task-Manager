@@ -1,6 +1,5 @@
 @extends('layout.main')
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/showUser.css') }}">
 <style>
 .icon a {
     background-image: none;
@@ -53,20 +52,17 @@
                                             <h5 class="modal-title" id="formModalLabel">Edytuj profil</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            <p>Ustaw nowe zdjęcie profilowe:</p>
-                                            <form method="POST" style="padding:5px;" action="{{ route('file.upload') }}" enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="file" id="imageUpload" style="position:relative; left:1.5%" name="avatar"> <br>
-                                                <button type="submit" class="btn btn-secondary mt-1">
-                                                    Prześlij zdjęcie
-                                                </button>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-                                            <button type="button" class="btn btn-primary">Zapisz zmiany</button>
-                                        </div>
+                                        <form method="POST" style="padding:5px;" action="{{ route('file.upload') }}" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <p>Ustaw nowe zdjęcie profilowe:</p>
+                                                <input type="file" id="imageUpload" style="position:relative; left:1.5%" name="avatar"><br>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                                                <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -80,12 +76,17 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="row user-info pt-3" style="background-color:#333333; color:white">
+                <div class="col-md-4">
+                    <button type="button" id="klawisz" class="btn btn-secondary">Wyświetl informacje</button>
+                </div>
+            </div>
             <div class="row user-info pt-3" style="background-color:#333333; color:white">
                 <div class="col-md-6 pb-4">
                     <p class="m-0 p-0">ID użytkownika = {{ Auth::id() }}</p>
                     <p class="m-0 p-0">Adres e-mail użytkownika = {{ Auth::user()->email }}</p>
                     <p class="m-0 p-0">Data założenia konta = {{ Auth::user()->created_at}}</p>
+                    <p class="m-0 p-0" id="IdOutput"></p>
                 </div>
                 <div class="col-md-5">
                     @if (isset(Auth::user()->country))
@@ -97,9 +98,13 @@
                 <div class="col-md-1 icon">
                     <a href="/sendMail"><i class="bi bi-envelope" style="font-size:32px; margin-left:13px"></i></a>
                 </div>
+
             </div>
+
+
         </div>
     </div>
+
     @if (session('message'))
     <div class="row">
         <div class="col-md-4 offset-4">
@@ -111,20 +116,47 @@
     @endif
 </div>
 
+
 @endsection
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-document.getElementById('imageUpload').addEventListener('change', function () {
-  const fileInput = this;
-  const maxFileSize = 5 * 1024 * 1024; // 5 MB
+$(document).ready(function() {
+    $('#imageUpload').on('change', function() {
+        const fileInput = this;
+        const maxFileSize = 5 * 1024 * 1024; // 5 MB
 
-  if (fileInput.files.length > 0) {
-    const fileSize = fileInput.files[0].size;
+        if (fileInput.files.length > 0) {
+        const fileSize = fileInput.files[0].size;
 
-    if (fileSize > maxFileSize) {
-      alert('Plik jest za duży. Maksymalna wielkość to 5 MB.');
-      fileInput.value = ''; // Wyczyszczenie pola pliku
-    }
-  }
+        if (fileSize > maxFileSize) {
+            alert('Plik jest za duży. Maksymalna wielkość to 5 MB.');
+            $(this).val(''); // Wyczyszczenie pola pliku
+        }
+        }
+    });
+
+    var button = ($("#klawisz")),
+        IdOutput = ($("#IdOutput"));
+
+    button.on("click", function(){
+        $.ajax({
+            url:"/test",
+            method:"GET",
+            dataType:"json",
+            success:function(data, status, jqXHR){ 
+                console.log("Żądanie zakończone sukcesem");
+
+                var IdInfo = "Tytuł twojego pierwszego zadania = " + data.title;
+                IdOutput.text(IdInfo);
+            },
+
+            error:function(jqXHR, status, errorThrown){ 
+                console.log("Żądanie zakończone errorem");
+            }
+        })
+    });
+
 });
 </script>

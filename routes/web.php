@@ -3,8 +3,6 @@
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytkownika
     
     //TASKS 
@@ -32,7 +30,12 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
 
     //MAILS
     Route::get('/sendMail', [App\Http\Controllers\MailController::class, 'sendMail'])->name('send.mail');
+
+    //AJAX TEST
+    Route::match(['get', 'post'], "/test", 'TaskController@test')->name('ajax.test');
+
 });
+
 Route::match(['get', 'post'], '/logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 
