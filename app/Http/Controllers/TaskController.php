@@ -184,13 +184,4 @@ class TaskController extends Controller
     
         return redirect()->route('tasks.list')->with('success', 'Zadanie zostało usunięte.');
     }
-
-    public function test()
-    {
-        $test=TaskModel::select('id', 'title')
-        ->where('user_id',  Auth::id())
-        ->first();
-
-        return response()->json($test);
-    }
 }

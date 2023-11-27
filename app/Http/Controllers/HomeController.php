@@ -21,12 +21,5 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {  
-        $FileConnector = new FileController();
-        $avatar = $FileConnector ->viewAvatar();
-        $title = "Informacje o zalogowanym użytkowniku";
 
-        return view('showUser', compact ('avatar', 'title'));
-    }
 }
