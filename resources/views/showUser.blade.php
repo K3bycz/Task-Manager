@@ -72,30 +72,31 @@ td{
                                             <hr>
                                             <form method="POST" style="padding:5px;" action="{{ route('user.update') }}" enctype="multipart/form-data">
                                                 @csrf
-                                                <div class="row d-flex justify-content-center align-items-center">
+                                                <div class="row">
                                                     <div class="col-6">
                                                         <label for="country">Kraj zamieszkania:</label>
-                                                        <input type="text" name="country" placeholde="Kraj" value="{{ Auth::user()->country }}" class="mb-2">
+                                                   
+                                                        <input type="text" id="country" name="country" style="padding-right:0px; !important; width:220px;">
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="region">Region:</label>
-                                                        <input type="text" name="region" placeholde="Region" value="{{ Auth::user()->region }}" class="mb-2">
+                                                        <input type="text" name="region" placeholder="Region" value="{{ Auth::user()->region }}" class="mb-2">
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="city">Miasto:</label>
-                                                        <input type="text" name="city" placeholde="Miasto" value="{{ Auth::user()->city }}" class="mb-2">
+                                                        <input type="text" name="city" placeholder="Miasto" value="{{ Auth::user()->city }}" class="mb-2">
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="postcode">Kod pocztowy:</label>
-                                                        <input type="text" name="postcode" placeholde="Kod pocztowy" value="{{ Auth::user()->postcode }}" class="mb-2">
+                                                        <input type="text" name="postcode" placeholder="Kod pocztowy" value="{{ Auth::user()->postcode }}" class="mb-2">
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="country">Ulica:</label>
-                                                        <input type="text" name="street" placeholde="Ulica" value="{{ Auth::user()->street }}" class="mb-2">
+                                                        <input type="text" name="street" placeholder="Ulica" value="{{ Auth::user()->street }}" class="mb-2">
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="country">Numer domu:</label>
-                                                        <input type="text" name="housenumber" placeholde="Numer domu" value="{{ Auth::user()->housenumber }}" class="mb-2">
+                                                        <input type="text" name="housenumber" placeholder="Numer domu" value="{{ Auth::user()->housenumber }}" class="mb-2">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 d-flex justify-content-end mt-2">
@@ -217,11 +218,10 @@ td{
 
 
 @endsection
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
+    $("#country").countrySelect();
     $('#imageUpload').on('change', function() {
         const fileInput = this;
         const maxFileSize = 5 * 1024 * 1024; // 5 MB
