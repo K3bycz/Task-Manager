@@ -39,7 +39,6 @@ class UserController extends Controller{
     {
         $user = Auth::id();
         $validator = Validator::make(request()->all(), [
-            'country' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.]*$/ui|max:50',
             'region' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.]*$/ui|max:50',
             'city' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.]*$/iu|max:50',
             'postcode' => 'nullable|regex:/^[0-9\-]*$/',
