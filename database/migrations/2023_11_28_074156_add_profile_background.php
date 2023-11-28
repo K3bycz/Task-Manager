@@ -9,14 +9,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->varchar('avatar')->nullable()->change();
+            $table->longText('profileBackground')->nullable();
         });
     }
 
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->longText('avatar')->nullable()->change();
+            $table->dropColumn('profileBackground');
         });
     }
 };

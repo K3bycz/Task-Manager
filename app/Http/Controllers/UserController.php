@@ -30,9 +30,10 @@ class UserController extends Controller{
     {  
         $data = User::find(Auth::id());
         $avatar = $data->avatar;
+        $profileBackground = $data->profileBackground;
         $title = "Informacje o zalogowanym użytkowniku";
 
-        return view('showUser', compact ('avatar', 'title'));
+        return view('showUser', compact ('avatar', 'profileBackground', 'title'));
     }
 
     public function updateUserAdress(Request $request)
@@ -90,7 +91,8 @@ class UserController extends Controller{
     {
         $user = Auth::id();
         $validator = Validator::make($request->all(), [
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'profileBackground' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         if ($validator->fails()) {
@@ -108,6 +110,14 @@ class UserController extends Controller{
             'updated_at' => Carbon::now()]);
         }
 
+        if ($request->hasFile('profileBackground')) {
+            $file = $request->file('profileBackground');
+
+            $profileBackground = file_get_contents($file);
+            User::find($user)
+            ->update(['profileBackground' => $profileBackground,
+            'updated_at' => Carbon::now()]);
+        }
         return redirect('user');
     }
     

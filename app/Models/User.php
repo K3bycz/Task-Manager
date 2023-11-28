@@ -31,7 +31,8 @@ class User extends Authenticatable
         'postcode',
         'street',
         'housenumber',
-        'bio'
+        'bio',
+        'profileBackground'
     ];
 
     /**

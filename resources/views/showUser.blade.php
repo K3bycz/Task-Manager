@@ -22,8 +22,8 @@ td{
 
 <div class="container">
     <div class="row justify-content-center ">
-        <div class="col-md-3 order-1 mt-4 pb-2"> </div>
-        <div class="col-md-3 order-3 mt-4 pb-2"> </div>
+        <div class="col-md-3 order-1 mt-4 pb-2" style="background-image: url('data:image/jpeg;base64,{{ base64_encode($profileBackground) }}'); z-index: -2"> </div>
+        <div class="col-md-3 order-3 mt-4 pb-2" style="background-image: url('data:image/jpeg;base64,{{ base64_encode($profileBackground) }}'); z-index: -2"> </div>
         <div class="col-md-6 order-2">
             <div class="row user-background mt-4"  style="height:200px;background-color:#333333; color:white; border-bottom:1px solid white !important">
                 <div class="col-md-3">
@@ -63,10 +63,14 @@ td{
                                                 @csrf
                                                 <div class="col-12">
                                                     <label for="avatar">Ustaw nowe zdjęcie profilowe:</label>
-                                                    <input type="file" name="avatar" id="imageUpload" class="mb-3">
+                                                    <input type="file" name="avatar" class="mb-3 imageUpload">
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="avatar">Ustaw nowe tło profilu:</label>
+                                                    <input type="file" name="profileBackground" class="mb-3 imageUpload">
                                                 </div>
                                                 <div class="col-12 d-flex justify-content-end">
-                                                    <button type="submit" class="btn btn-secondary">Zmień zdjęcie profilowe</button>
+                                                    <button type="submit" class="btn btn-dark">Prześlij pliki</button>
                                                 </div>
                                             </form>
                                             <hr>
@@ -100,7 +104,7 @@ td{
                                                     </div>
                                                 </div>
                                                 <div class="col-12 d-flex justify-content-end mt-2">
-                                                    <button type="submit" class="btn btn-secondary">Zapisz adres</button>
+                                                    <button type="submit" class="btn btn-dark">Zapisz adres</button>
                                                 </div>
                                             </form>
                                             <hr>
@@ -111,7 +115,7 @@ td{
                                                     <textarea class="form-control rounded shadow" name="bio" rows="6" placeholder="Opis profilu..."></textarea>
                                                 </div>
                                                 <div class="col-12 d-flex justify-content-end mt-3">
-                                                    <button type="submit" class="btn btn-secondary">Zaaktualizuj informacje profilowe</button>
+                                                    <button type="submit" class="btn btn-dark">Zaaktualizuj informacje profilowe</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -222,7 +226,7 @@ td{
 <script>
 $(document).ready(function() {
     $("#country").countrySelect();
-    $('#imageUpload').on('change', function() {
+    $('.imageUpload').on('change', function() {
         const fileInput = this;
         const maxFileSize = 5 * 1024 * 1024; // 5 MB
 
