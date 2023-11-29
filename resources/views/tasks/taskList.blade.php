@@ -30,7 +30,7 @@
                                         <th><b>{{ $task->id }}</b></th>
                                         <th style="text-align: left">{{ $task->title }}</th>
                                         <th >{{ $task->category }}</th>
-                                        <th style="@if ($task->status === 'Nowe')  background-color:lightgreen @elseif ($task->status === 'W trakcie') background-color:yellow @elseif ($task->status === 'Zakończone')  background-color:red @endif">{{ $task->status }}</th>
+                                        <th style="@if ($task->status === 'Nowe')  background-color:#00cc66 @elseif ($task->status === 'W trakcie') background-color:yellow @elseif ($task->status === 'Zakończone')  background-color:#64b5f6 @endif">{{ $task->status }}</th>
                                         <th>
                                             <a href="{{ route('tasks.show', ['task' => $task->id]) }}">Szczegóły</a>
                                         </th>

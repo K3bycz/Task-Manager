@@ -44,7 +44,7 @@ class UserController extends Controller{
             'city' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.]*$/iu|max:50',
             'postcode' => 'nullable|regex:/^[0-9\-]*$/',
             'street' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.]*$/ui|max:50',
-            'housenumber' => 'nullable|regex:/^[a-zA-Z0-9\ąćęłńóśźż\s]*$/iu|max:50',
+            'housenumber' => 'nullable|regex:/^[a-zA-Z0-9\ąćęłńóśźż\s\/\\\\]*$/iu|max:50',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 

@@ -115,7 +115,7 @@ class TaskController extends Controller
             'status' => 'required',
             'priority' => 'nullable',
             'deadline' => 'nullable',
-            'description' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:250',
+            'description' => 'nullable|regex:/^[0-9\a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:250',
         ]);
 
         if ($validator->fails()) {

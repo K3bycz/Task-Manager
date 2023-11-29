@@ -112,7 +112,7 @@ td{
                                                 @csrf
                                                 <div class="col-12">
                                                     <label class="mb-1" for="country">Zaaktualizuj opis profilu:</label>
-                                                    <textarea class="form-control rounded shadow" name="bio" rows="6" placeholder="Opis profilu..."></textarea>
+                                                    <textarea class="form-control rounded shadow" style="max-height:250px;" name="bio" rows="6" placeholder="Opis profilu..."></textarea>
                                                 </div>
                                                 <div class="col-12 d-flex justify-content-end mt-3">
                                                     <button type="submit" class="btn btn-dark">Zaaktualizuj informacje profilowe</button>
@@ -233,12 +233,12 @@ $(document).ready(function() {
         if (fileInput.files.length > 0) {
         const fileSize = fileInput.files[0].size;
 
-        if (fileSize > maxFileSize) {
-            alert('Plik jest za duży. Maksymalna wielkość to 5 MB.');
-            $(this).val(''); // Wyczyszczenie pola pliku
+            if (fileSize > maxFileSize) {
+                alert('Plik jest za duży. Maksymalna wielkość to 5 MB.');
+                $(this).val('');
+            }
         }
-    }
-});
+    });
 
     var button = ($("#sendButton")),
         addressOutput = ($("#addressOutput"))
@@ -247,31 +247,62 @@ $(document).ready(function() {
         streetOutput = ($("#streetOutput"))
         houseNumberOutput = ($("#houseNumberOutput"))
 
+    let dataLoaded = false;
+
     button.on("click", function(){
-        $.ajax({
-            url:"/showAddress",
-            method:"GET",
-            dataType:"json",
-            success:function(data, status, jqXHR){ 
-                console.log(data);
-                console.log("Żądanie zakończone sukcesem");
+        if (!dataLoaded) {
+            $.ajax({
+                url:"/showAddress",
+                method:"GET",
+                dataType:"json",
+                success:function(data, status, jqXHR){ 
 
-                addressOutput.text("Adres użytkownika:");
-                cityOutput.text(data.city);
-                postcodeOutput.text(data.postcode);
-                streetOutput.text(data.street);
-                houseNumberOutput.text(data.housenumber);
+                    console.log("Żądanie zakończone sukcesem");
+                    if(data.city || data.postcode || data.street || data.housenumber) {
+                        addressOutput.text("Adres użytkownika:");
+                    }
+                    if (data.city) {
+                        cityOutput.text(data.city);
+                    }
+                    if (data.postcode) {
+                        postcodeOutput.text(data.postcode);
+                    }
+                    if (data.street) {
+                        streetOutput.text(data.street);
+                    }
+                    if (data.housenumber) {
+                        houseNumberOutput.text(data.housenumber);
+                    }
+                    if(data.city || data.postcode || data.street || data.housenumber) {
+                        $("#addressRow").css({
+                        "border": "1px solid white",
+                        "text-align": "center"
+                        });
+                    }
+                    dataLoaded = true;
+                    button.find('i').removeClass('bi-eye').addClass('bi-eye-slash');
+                },
 
-                $("#addressRow").css({
-                "border": "1px solid white",
-                "text-align": "center"
+                error:function(jqXHR, status, errorThrown){ 
+                    console.log("Żądanie zakończone errorem");
+                }
+            })
+        } else {
+            addressOutput.text('');
+            cityOutput.text('');
+            postcodeOutput.text('');
+            streetOutput.text('');
+            houseNumberOutput.text('');
+
+            $("#addressRow").css({
+                "border": "none",
+                "text-align": "left"
             });
-            },
 
-            error:function(jqXHR, status, errorThrown){ 
-                console.log("Żądanie zakończone errorem");
-            }
-        })
+            dataLoaded = false;
+            button.find('i').removeClass('bi-eye-slash').addClass('bi-eye');
+        }
+
     });
 
 });

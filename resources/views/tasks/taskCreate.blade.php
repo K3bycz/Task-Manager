@@ -55,23 +55,23 @@
                                     <p>Opis zadania <br> <textarea name="description" placeholder="(max. 250 znaków)"></textarea></p>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <button type="submit addTaskButton" style="margin-bottom:20px;">Dodaj zadanie</button>
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <div class="col-4">
+                                    <button type="submit" class="formLink formButton"  style="margin-bottom:20px;">Dodaj zadanie</button>
                                 </div>
                             </div>
                         </form> 
                         @if ($errors->has('title'))
-                        <div class="alert">
+                        <div class="alert d-flex justify-content-center align-items-center">
                             Wprowadzono błędny tytuł!
                         </div>
                         @elseif ($errors->has('description'))
-                        <div class="alert">
+                        <div class="alert d-flex justify-content-center align-items-center">
                             Wprowadzono błędny opis!
                         </div>
                         @endif
                         @if(session('success'))
-                            <div class="alert">
+                            <div class="alert d-flex justify-content-center align-items-center">
                                 {{ session('success') }}
                             </div>
                         @endif
