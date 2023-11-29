@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
+use App\Models\TaskModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\AchievementsController;
 
 class UserController extends Controller{
 
@@ -28,12 +30,30 @@ class UserController extends Controller{
 
     public function index()
     {  
+        $achievementsConnector = new AchievementsController();
+        $achievements = $achievementsConnector->showAchievements();
+
         $data = User::find(Auth::id());
         $avatar = $data->avatar;
         $profileBackground = $data->profileBackground;
+
+        $countAll = TaskModel::all()
+        ->where('user_id',  Auth::id())
+        ->count();
+
+        $countDone = TaskModel::all()
+        ->where('user_id',  Auth::id())
+        ->where('status','Zakończone')
+        ->count();
+
+        $countInProgress = TaskModel::all()
+        ->where('user_id',  Auth::id())
+        ->where('status','W trakcie')
+        ->count();
+
         $title = "Informacje o zalogowanym użytkowniku";
 
-        return view('showUser', compact ('avatar', 'profileBackground', 'title'));
+        return view('showUser', compact ('avatar', 'profileBackground', 'title', 'countAll', 'countDone', 'countInProgress', 'achievements'));
     }
 
     public function updateUserAdress(Request $request)

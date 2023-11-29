@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use App\Models\TaskModel;
-use Illuminate\Support\Facades\Auth;
+use App\Models\AchievementsToUserModel;
+use App\Helpers\AchievementsHelper;
 
 class TaskController extends Controller
 {
@@ -115,7 +117,7 @@ class TaskController extends Controller
             'status' => 'required',
             'priority' => 'nullable',
             'deadline' => 'nullable',
-            'description' => 'nullable|regex:/^[0-9\a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:250',
+            'description' => 'nullable|regex:/^[0-9\a-zA-Z\ąćęłńóśźż\s\.\,\-]*$/iu|max:250',
         ]);
 
         if ($validator->fails()) {
@@ -136,7 +138,9 @@ class TaskController extends Controller
             'updated_at' => Carbon::now(),
             'user_id' => Auth::user()->id,
         ]);
-        
+
+        AchievementsHelper::checkAchievementProgress();
+
         return redirect()->route('tasks.create')->with('success', 'Zadanie zostało dodane.');
     }
 
@@ -151,7 +155,7 @@ class TaskController extends Controller
             'status' => 'required',
             'priority' => 'nullable',
             'deadline' => 'nullable',
-            'description' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:250',
+            'description' => 'nullable|regex:/^[0-9\a-zA-Z\ąćęłńóśźż\s\.\,\-]*$/iu|max:250',
         ]);
 
         if ($validator->fails()) {
@@ -171,6 +175,8 @@ class TaskController extends Controller
                 'description' => $data['description'] ?? null,
                 'updated_at' => Carbon::now(),
         ]);
+        
+        AchievementsHelper::checkAchievementProgress();
         
         return redirect()->route('tasks.list')->with('success', 'Zadanie zostało zaktualizowane.');
     }

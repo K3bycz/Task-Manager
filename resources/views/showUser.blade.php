@@ -177,10 +177,54 @@ td{
                 <div class="col-md-1 offset-3 icon">
                     <a href="/sendMail"><i class="bi bi-envelope" style="font-size:32px; margin-left:13px"></i></a>
                     <a href="#" id="sendButton"><i class="bi bi-eye" style="font-size:32px; margin-left:13px"></i></a>
-
+                </div>
+            </div>
+            <div class="row user-background" style="height:300px;background-color:#333333; color:white; border-top:1px solid white !important">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <h5 class="mt-1 mb-3"> Posty </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="border-left:1px solid white !important">
+                    <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <h5 class="mt-1 mb-3"> Twoje osiągnięcia </h5>
+                        </div>
+                    </div>
+                    <div class="row pb-2" style="border-bottom:1px solid white !important">
+                        <div class="col-md-12">
+                            <div class="container-fluid">
+                                <div class="row pb-2">
+                                    @if($achievements != null)
+                                        @foreach ($achievements as $achievement)
+                                            <div class="col-md-3">
+                                                <img src="{{ asset($achievement->url) }}" alt="User" style="width:45px; height:45px;"></a>
+                                            </div>
+                                        @endforeach
+                                    @endif   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row mt-2">
+                            <div class="col-md-12 d-flex justify-content-start align-items-center p-1" style="height:50px">
+                                <p>Zadania <span class="text-muted" style="font-size:25px"> @if($countAll != null) {{ $countAll }} @endif</span></p>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-start align-items-center ml-2 p-1" style="height:50px"> 
+                                <p>Zakończone <span class="text-muted" style="font-size:25px"> @if($countDone != null) {{ $countDone }} @endif</span></p>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-start align-items-center ml-2 p-1" style="height:50px">
+                                <p>W trakcie <span class="text-muted" style="font-size:25px"> @if($countInProgress != null) {{ $countInProgress }} @endif</span></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        
     </div>
 
     <div class="container mt-4">
