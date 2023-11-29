@@ -19,10 +19,27 @@ class AchievementsHelper
             ->where('status', 'W trakcie')
             ->count();
 
+        $countToDo = TaskModel::where('user_id', Auth::id())
+            ->where('status', 'Nowe')
+            ->count();
+            
+        $countWork = TaskModel::where('user_id', Auth::id())
+            ->where('status', 'Zakończone')
+            ->where('category', 'Praca')
+            ->count();
+        
+        $countStudy = TaskModel::where('user_id', Auth::id())
+            ->where('status', 'Zakończone')
+            ->where('category', 'Studia')
+            ->count();
+
         self::awardAchievement(1, $countDone, 1); // Pierwsze kroki
         self::awardAchievement(2, $countDone, 10); // Dziesięć na dziesięć
         self::awardAchievement(3, $countDone, 100); // Weteran
         self::awardAchievement(4, $countInProgress, 10); // Człowiek-orkiestra
+        self::awardAchievement(5, $countToDo, 20); // Ręce pełne roboty
+        self::awardAchievement(6, $countWork, 10); // Praca, praca
+        self::awardAchievement(7, $countStudy , 10); // Mól książkowy
     }
 
     private static function awardAchievement($achievementId, $count, $target)

@@ -26,21 +26,21 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <p>Kategoria<br> 
-                                                <select name="category" id="select" value="{{ $task->category }}">
-                                                    <option value="Praca">Praca</option>
-                                                    <option value="Studia">Studia</option>
-                                                    <option value="Dom">Dom</option>
-                                                    <option value="Hobby">Hobby</option>
-                                                    <option value="Inne">Inne</option>
+                                                <select name="category" id="select">
+                                                    <option value="Praca" @if($task->category === "Praca") selected @endif>Praca</option>
+                                                    <option value="Studia" @if($task->category === "Studia") selected @endif>Studia</option>
+                                                    <option value="Dom" @if($task->category === "Dom") selected @endif>Dom</option>
+                                                    <option value="Hobby" @if($task->category === "Hobby") selected @endif>Hobby</option>
+                                                    <option value="Inne"  @if($task->category === "Hobby") selected @endif>Inne</option>
                                                 </select>
                                             </p>
                                         </div>
                                         <div class="col-4 offset-1">
                                             <p>Status<br>
                                                 <select name="status" id="select" value="{{ $task->status }}">
-                                                    <option value="Nowe">Nowe</option>
-                                                    <option value="W trakcie">W trakcie</option>
-                                                    <option value="Zakończone">Zakończone</option>
+                                                    <option value="Nowe" @if($task->status === "Nowe") selected @endif>Nowe</option>
+                                                    <option value="W trakcie" @if($task->status === "W trakcie") selected @endif>W trakcie</option>
+                                                    <option value="Zakończone" @if($task->status === "Zakończone") selected @endif>Zakończone</option>
                                                 </select>
                                             </p>
                                         </div>

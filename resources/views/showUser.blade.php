@@ -164,7 +164,7 @@ td{
                     
                     <div class="row" id="addressRow">
                         <div class="col-md-12">
-                            <p class="m-0 p-0" style="color:#939393; font-weight:bold" id="addressOutput"></p>
+                            <p class="m-0 p-0" style="color:#939393;" id="addressOutput"></p>
                         </div>
                         <div class="col-md-12">
                             <span class="m-0 p-0" id="streetOutput"></span> <span class="m-0 p-0" id="houseNumberOutput"></span>
@@ -196,10 +196,10 @@ td{
                     <div class="row pb-2" style="border-bottom:1px solid white !important">
                         <div class="col-md-12">
                             <div class="container-fluid">
-                                <div class="row pb-2">
+                                <div class="row">
                                     @if($achievements != null)
                                         @foreach ($achievements as $achievement)
-                                            <div class="col-md-3">
+                                            <div class="col-md-3" style="margin-bottom:15px">
                                                 <img src="{{ asset($achievement->url) }}" alt="User" style="width:45px; height:45px;"></a>
                                             </div>
                                         @endforeach
