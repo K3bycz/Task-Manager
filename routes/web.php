@@ -26,6 +26,10 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
     Route::match(['get', 'post'], '/user/updateBio', 'UserController@updateUserBio')->name('user.updateBio');
     Route::match(['get', 'post'], '/showAddress', 'UserController@showAddress')->name('show.address');
 
+    //COMMENTS
+    Route::match(['get', 'post'], '/saveComment', 'CommentsController@saveComment')->name('save.comment');
+    Route::match(['get', 'post'], '/deleteComment/{commentId}', 'CommentsController@deleteComment')->name('delete.comment');
+
     //MAILS
     Route::get('/sendMail', 'MailController@sendMail')->name('send.mail');
    

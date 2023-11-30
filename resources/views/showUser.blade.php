@@ -1,31 +1,11 @@
 @extends('layout.main')
 @section('content')
-
-<style>
-.icon a {
-    background-image: none;
-    color: white; 
-    -webkit-background-clip: initial; 
-    -webkit-text-fill-color: initial;
-    transition: none;
-}
-  
-.icon a::before{
-    background:none;
-    transition:none;
-}
-td{
-    padding:5px;
-    color:white;
-}
-</style>
-
 <div class="container">
     <div class="row justify-content-center ">
-        <div class="col-md-3 order-1 mt-4 pb-2" style="background-image: url('data:image/jpeg;base64,{{ base64_encode($profileBackground) }}'); z-index: -2"> </div>
-        <div class="col-md-3 order-3 mt-4 pb-2" style="background-image: url('data:image/jpeg;base64,{{ base64_encode($profileBackground) }}'); z-index: -2"> </div>
+        <div class="col-md-3 order-1 pb-2" style="background-image: url('data:image/jpeg;base64,{{ base64_encode($profileBackground) }}'); z-index: -2"> </div>
+        <div class="col-md-3 order-3 pb-2" style="background-image: url('data:image/jpeg;base64,{{ base64_encode($profileBackground) }}'); z-index: -2"> </div>
         <div class="col-md-6 order-2">
-            <div class="row user-background mt-4"  style="height:200px;background-color:#333333; color:white; border-bottom:1px solid white !important">
+            <div class="row user-background"  style="height:200px;background-color:#333333; color:white; border-bottom:1px solid white !important">
                 <div class="col-md-3">
                     @if ($avatar != null)
                         <img src="data:image/jpeg;base64, {{ base64_encode($avatar) }}" alt="Avatar"
@@ -179,12 +159,79 @@ td{
                     <a href="#" id="sendButton"><i class="bi bi-eye" style="font-size:32px; margin-left:13px"></i></a>
                 </div>
             </div>
-            <div class="row user-background" style="height:300px;background-color:#333333; color:white; border-top:1px solid white !important">
+            <div class="row user-background" style="height:1000px;background-color:#333333; color:white; border-top:1px solid white !important">
                 <div class="col-md-8">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center">
-                            <h5 class="mt-1 mb-3"> Posty </h5>
+                            <h5 class="mt-1 mb-0"> Komentarze </h5> 
                         </div>
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <div class="pagination">
+                                {{ $comments->onEachSide(1)->links('pagination::bootstrap-4') }}
+                            </div>
+                        </div>
+                        <div class="col-md-10 offset-1">
+                           
+                            <form method="POST" action="{{ route('save.comment') }}">
+                                @csrf
+                                <div class="row d-flex  align-items-start">
+                                    <div class="col-md-1">
+                                        @if ($avatar != null)
+                                            <img src="data:image/jpeg;base64, {{ base64_encode($avatar) }}" alt="Avatar"
+                                                style="border: solid white 0.5px; width: 30px; height: 30px; margin-top: 10px; margin-bottom: 10px;">
+                                        @else
+                                            <img src="{{ asset('/images/user.png') }}" alt="User"
+                                                style="border: solid white 0.5px; width: 30px; height: 30px; margin-top: 10px; margin-bottom: 10px;">
+                                        @endif
+                                    </div>
+                                    <div class="col-md-11">
+                                        <textarea id="commentArea" name="comment" maxlength="300" style="width:100%; margin-top:10px; min-height:30px; height:30px; max-height:80px; font-size:13px;" placeholder="Dodaj komentarz"></textarea>
+                                    </div>
+                                    <div class="col-md-12" style="display: flex; justify-content: space-between;">
+                                    <span class="submitComment" style="font-size:11px;">Pozostało znaków: <span id="remaining"></span></span>
+                                        <button class="submitComment btn btn-dark" type="submit" class="btn btn-dark" style="font-size:11px; margin-bottom:10px">Zamieść komentarz</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @if($comments != null)
+                            @foreach ($comments as $comment)
+                                <div class="col-md-10 offset-1">
+                                    <div class="row d-flex  align-items-start">
+                                        <div class="col-md-1">
+                                            @if ($avatar != null)
+                                                <img src="data:image/jpeg;base64, {{ base64_encode($avatar) }}" alt="Avatar"
+                                                    style="border: solid white 0.5px; width: 30px; height: 30px; margin-top: 5px;">
+                                            @else
+                                                <img src="{{ asset('/images/user.png') }}" alt="User"
+                                                    style="border: solid white 0.5px; width: 30px; height: 30px; margin-top: 5px;">
+                                            @endif
+                                        </div>
+                                        <div class="col-md-11">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="d-flex justify-content-between icon">
+                                                        <div>
+                                                            {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}
+                                                        </div>
+                                                        <div style="font-size:12px; color:#939393;">
+                                                        <a href="/deleteComment/{{ $comment->comment_id }}" style="margin-right:5px; font-size:13px"><i class="bi bi-trash"></i></a>{{ $comment->created_at }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="color:#939393;">                                 
+                                                            <p>{{ $comment->content }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-4" style="border-left:1px solid white !important">
@@ -199,8 +246,8 @@ td{
                                 <div class="row">
                                     @if($achievements != null)
                                         @foreach ($achievements as $achievement)
-                                            <div class="col-md-3" style="margin-bottom:15px">
-                                                <img src="{{ asset($achievement->url) }}" alt="User" style="width:45px; height:45px;"></a>
+                                            <div class="col-md-3 achievement-container" style="margin-bottom:15px" data-title="{{ $achievement->title }}" data-content="{{ $achievement->description }}">
+                                                <img class="achievement-image" src="{{ asset($achievement->url) }}" alt="User" style="width:45px; height:45px;">
                                             </div>
                                         @endforeach
                                     @endif   
@@ -210,7 +257,7 @@ td{
                     </div>
                     <div class="container-fluid">
                         <div class="row mt-2">
-                            <div class="col-md-12 d-flex justify-content-start align-items-center p-1" style="height:50px">
+                            <div class="col-md-12 d-flex justify-content-start align-items-center ml-2 p-1" style="height:50px">
                                 <p>Zadania <span class="text-muted" style="font-size:25px"> @if($countAll != null) {{ $countAll }} @endif</span></p>
                             </div>
                             <div class="col-md-12 d-flex justify-content-start align-items-center ml-2 p-1" style="height:50px"> 
@@ -227,7 +274,7 @@ td{
         
     </div>
 
-    <div class="container mt-4">
+    <div class="container">
         @if ($errors->has('country'))
             <div class="alert alert-danger col-lg-6 offset-lg-3">
                 Wprowadzono błędną nazwę państwa!
@@ -260,15 +307,24 @@ td{
             <div class="alert alert-danger col-lg-6 offset-lg-3">
                 Wprowadzono błędny opis profilu!
             </div>
+            @elseif ($errors->has('comment'))
+            <div class="alert alert-danger col-lg-6 offset-lg-3">
+                Twój komentarz ma błędny format!
+            </div>
         @endif
     </div>
 </div>
 
-
 @endsection
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ asset('css/showUser.css') }}">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
 $(document).ready(function() {
+    $('.submitComment').hide();
     $("#country").countrySelect();
     $('.imageUpload').on('change', function() {
         const fileInput = this;
@@ -346,7 +402,43 @@ $(document).ready(function() {
             dataLoaded = false;
             button.find('i').removeClass('bi-eye-slash').addClass('bi-eye');
         }
+    });
+    
+    $('#commentArea').on('input', function() {
+        var textLength = $(this).val().length;
+            var remaining = 300 - textLength;
+            $('#remaining').text(remaining);
 
+        if ($(this).val().trim().length === 0) {
+            $('.submitComment').hide();
+        } else {
+            $('.submitComment').show();
+        }
+    });
+
+    $('.achievement-container').each(function() {
+        var $container = $(this);
+        var $image = $container.find('.achievement-image');
+        var visible = false;
+
+        $container.on('click', function() {
+            $('.achievement-image').popover('dispose');
+            var title = $container.data('title');
+            var content = $container.data('content');
+
+            if (visible) {
+                $image.popover('hide');
+                visible = false;
+            } else {
+                $image.popover({
+                    title: title,
+                    content: content,
+                    placement: 'left',
+                    trigger: 'manual',
+                }).popover('show');
+                visible = true;
+            }
+        });
     });
 
 });

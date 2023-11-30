@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\AchievementsController;
+use App\Http\Controllers\CommentsController;
 
 class UserController extends Controller{
 
@@ -33,6 +34,9 @@ class UserController extends Controller{
         $achievementsConnector = new AchievementsController();
         $achievements = $achievementsConnector->showAchievements();
 
+        $commentsConnector = new CommentsController();
+        $comments = $commentsConnector->showComments();
+        
         $data = User::find(Auth::id());
         $avatar = $data->avatar;
         $profileBackground = $data->profileBackground;
@@ -53,7 +57,7 @@ class UserController extends Controller{
 
         $title = "Informacje o zalogowanym użytkowniku";
 
-        return view('showUser', compact ('avatar', 'profileBackground', 'title', 'countAll', 'countDone', 'countInProgress', 'achievements'));
+        return view('showUser', compact ('avatar', 'profileBackground', 'title', 'countAll', 'countDone', 'countInProgress', 'achievements', 'comments'));
     }
 
     public function updateUserAdress(Request $request)

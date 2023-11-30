@@ -15,7 +15,7 @@ class AchievementsController extends Controller
         $user = Auth::id();
         $achievements = AchievementsToUserModel::where('user_id', $user)
         ->get();
-
+        $data = [];
         foreach ($achievements as $achievement){
             $achievementId = $achievement->achievement_id;
             $data[] = AchievementsModel::find($achievementId);
