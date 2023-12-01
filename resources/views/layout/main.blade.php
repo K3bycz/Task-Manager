@@ -27,8 +27,8 @@
                     <div class="col-7 col-md-10" style="text-align:center; padding-top:10px; font-size: 24px;font-family:Comic Sans MS, Comic Sans, cursive;">
                         @yield('title', $applicationName) 
                     </div>
-                    <div class="col-1 col-md-1" style="text-align:right"> 
-                        <a href="/user"> <img src="{{ asset('/images/user.png') }}" alt="User" style="width:45px; height:45px; margin-right:10px;"></a>
+                    <div class="col-1 col-md-1 icon" style="text-align:right"> 
+                        <a href="/user"> <img src="{{ asset('/images/user.png') }}" alt="User" style="width:45px; height:45px; margin-right:5px;"></a>
                     </div>
                 </div>
             </div>
@@ -38,22 +38,24 @@
                 <div class="sidebar">
                     @section('sidebar')
                         <ul class="list-unstyled">
-                            <li><a href="/" >&#128726; Pulpit</a></li>
-                        </ul>
-                        <ul class="list-unstyled text-uppercase">
-                            <li><br>zadania</li>
-                        </ul>
-                        <ul class="list-unstyled">
-                            <li><a href="/tasks" >&#x1F5F9; Lista</a></li>
-                        </ul>
-                        <ul class="list-unstyled">
-                            <li><a href="/tasks/create" >&#10133; Dodaj</a></li>
-                        </ul>
-                        <ul class="list-unstyled text-uppercase">
-                            <li><br>użytkownicy</li>
-                        </ul>
-                        <ul class="list-unstyled">
-                            <li><a href="/users" >&#128100; Lista</a></li>
+                            <li>
+                                <a href="/">&#128726; Pulpit</a>
+                            </li>
+                            <li class="text-uppercase mt-2 mb-2">
+                                zadania
+                            </li>
+                            <li>
+                                <a href="/tasks">&#x1F5F9; Lista</a>
+                            </li>
+                            <li>
+                                <a href="/tasks/create">&#10133; Dodaj</a>
+                            </li>
+                            <li class="text-uppercase mt-2 mb-2">
+                                użytkownicy
+                            </li>
+                            <li>
+                                <a href="/users" >&#128100; Lista</a>
+                            </li>
                         </ul>
                     @show
                 </div>

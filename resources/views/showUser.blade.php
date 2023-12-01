@@ -64,23 +64,23 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="region">Region:</label>
-                                                        <input type="text" name="region" placeholder="Region" value="{{ Auth::user()->region }}" class="mb-2">
+                                                        <input type="text" name="region" placeholder="Region" value="{{ Auth::user()->region }}" style="padding-right:0px; !important; width:220px;" class="mb-2">
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="city">Miasto:</label>
-                                                        <input type="text" name="city" placeholder="Miasto" value="{{ Auth::user()->city }}" class="mb-2">
+                                                        <input type="text" name="city" placeholder="Miasto" value="{{ Auth::user()->city }}" style="padding-right:0px; !important; width:220px;" class="mb-2">
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="postcode">Kod pocztowy:</label>
-                                                        <input type="text" name="postcode" placeholder="Kod pocztowy" value="{{ Auth::user()->postcode }}" class="mb-2">
+                                                        <input type="text" name="postcode" placeholder="Kod pocztowy" value="{{ Auth::user()->postcode }}" style="padding-right:0px; !important; width:220px;" class="mb-2">
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="country">Ulica:</label>
-                                                        <input type="text" name="street" placeholder="Ulica" value="{{ Auth::user()->street }}" class="mb-2">
+                                                        <input type="text" name="street" placeholder="Ulica" value="{{ Auth::user()->street }}" style="padding-right:0px; !important; width:220px;" class="mb-2">
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="country">Numer domu:</label>
-                                                        <input type="text" name="housenumber" placeholder="Numer domu" value="{{ Auth::user()->housenumber }}" class="mb-2">
+                                                        <input type="text" name="housenumber" placeholder="Numer domu" value="{{ Auth::user()->housenumber }}" style="padding-right:0px; !important; width:220px;" class="mb-2">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 d-flex justify-content-end mt-2">
@@ -156,7 +156,7 @@
                 </div>
                 <div class="col-md-1 offset-3 icon">
                     <a href="/sendMail"><i class="bi bi-envelope" style="font-size:32px; margin-left:13px"></i></a>
-                    <a href="#" id="sendButton"><i class="bi bi-eye" style="font-size:32px; margin-left:13px"></i></a>
+                    <a href="#" class="mt-1" id="sendButton"><i class="bi bi-eye" style="font-size:32px; margin-left:13px;"></i></a>
                 </div>
             </div>
             <div class="row user-background" style="height:1000px;background-color:#333333; color:white; border-top:1px solid white !important">

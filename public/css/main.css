@@ -10,7 +10,9 @@ ul {
 }
 
 li {
-    padding-left: 10px;
+    padding-top:7px;
+    padding-bottom:7px;
+    padding-left: 15px;
     background-color: #bcbcf2;
 }
 
@@ -24,7 +26,6 @@ a {
     background-size: 200% 100%;
     background-position: -100%;
     display: inline-block;
-    padding: 5px 0;
     position: relative;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -99,3 +100,24 @@ a:hover::before {
     z-index: -1 !important;
     text-align: left;
  }
+
+.icon {
+    padding-top:5px;
+}
+.icon a {
+    background-image: none;
+    color: white; 
+    -webkit-background-clip: initial; 
+    -webkit-text-fill-color: initial;
+    transition: none;
+}
+
+.icon a:hover {
+    text-decoration: none !important; 
+    color: inherit !important;
+}
+
+.icon a::before{
+    background:none;
+    transition:none;
+}

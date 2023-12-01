@@ -1,20 +1,3 @@
-.icon a {
-    background-image: none;
-    color: white; 
-    -webkit-background-clip: initial; 
-    -webkit-text-fill-color: initial;
-    transition: none;
-}
-
-.icon a:hover {
-    text-decoration: none !important; 
-    color: inherit !important;
-}
-
-.icon a::before{
-    background:none;
-    transition:none;
-}
 
 td{
     padding:5px;

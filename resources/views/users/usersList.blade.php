@@ -21,14 +21,14 @@
                                 <th style="text-align: left"><b>Imię</b></th>
                                 <th style="text-align: left"><b>Nazwisko</b></th>
                                 <th style="width: 30%"><b>Email</b></th>
-                                <th style="width: 15%"><b>Data utworzenia</b></th>
+                                <th style="width: 15%; padding:5px;"><b>Data utworzenia</b></th>
                             </tr>
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr>
                                     <th><b>{{ $user->id }}</b></th>
-                                    <th style="text-align: left">{{ $user->firstName }}</th>
+                                    <th style="text-align: left;">{{ $user->firstName }}</th>
                                     <th style="text-align: left">{{ $user->lastName }}</th>
                                     <th>{{ $user->email }}</th>
                                     <th>{{ $user->created_at }}</th>
