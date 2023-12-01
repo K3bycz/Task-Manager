@@ -20,6 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('applicationName', 'Lista zadań do zrobienia');
+        View::share('applicationName', "K3bycz's Task Manager");
     }
 }

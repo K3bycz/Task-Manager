@@ -13,7 +13,8 @@ li {
     padding-top:7px;
     padding-bottom:7px;
     padding-left: 15px;
-    background-color: #bcbcf2;
+    background-color: #11101D;
+    color: #fff;
 }
 
 a {
@@ -21,7 +22,7 @@ a {
     to right,
     #5d3fd3,
     #5d3fd3 50%,
-    #000 50%
+    #fff 50%
     );
     background-size: 200% 100%;
     background-position: -100%;
@@ -58,15 +59,16 @@ a:hover::before {
 
 .header {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-    background-color: #9191e9;
+    background-color: #1d1b31;
     height:6vh;
+    color: #fff;
     overflow-x: hidden;
     z-index: 1;
 }
 
 .sidebar {
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-    background-color: #bcbcf2;
+    background-color: #11101D;
     font-family: Arial, sans-serif;
     font-size: 16px;
     text-align: left;
@@ -77,8 +79,7 @@ a:hover::before {
 }
 
 .clock {
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-    background-color: white;
+    color: white;
     text-align: center;
     height:70%;
     font-size: 24px; 
@@ -88,18 +89,6 @@ a:hover::before {
 .content {
     z-index: -1;
 }
-
-.titleBlock{
-    font-family: Sans MS, Comic Sans, cursive;
-    font-size: 24;
-    padding: 10px 0px 10px 10px;
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-    background-color: #d1d1f6;
-    height: 5%;
-    position: relative;
-    z-index: -1 !important;
-    text-align: left;
- }
 
 .icon {
     padding-top:5px;

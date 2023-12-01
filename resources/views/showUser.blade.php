@@ -5,7 +5,7 @@
         <div class="col-md-3 order-1 pb-2" style="background-image: url('data:image/jpeg;base64,{{ base64_encode($profileBackground) }}'); z-index: -2"> </div>
         <div class="col-md-3 order-3 pb-2" style="background-image: url('data:image/jpeg;base64,{{ base64_encode($profileBackground) }}'); z-index: -2"> </div>
         <div class="col-md-6 order-2">
-            <div class="row user-background"  style="height:200px;background-color:#333333; color:white; border-bottom:1px solid white !important">
+            <div class="row user-background pt-3"  style="height:200px;background-color:#333333; color:white; border-bottom:1px solid white !important">
                 <div class="col-md-3">
                     @if ($avatar != null)
                         <img src="data:image/jpeg;base64, {{ base64_encode($avatar) }}" alt="Avatar"
@@ -316,11 +316,8 @@
 </div>
 
 @endsection
-<link rel="stylesheet" href="{{ asset('css/showUser.css') }}">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{{ asset('css/showUser.css') }}">
 
 <script>
 $(document).ready(function() {
