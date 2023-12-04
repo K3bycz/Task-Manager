@@ -1,6 +1,5 @@
-.informationBox {
-    background-color: #d1d1f6; 
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+body{
+    background-color:#c9d0da
 }
 
 td {
@@ -8,4 +7,26 @@ td {
     padding: 4px 10px;
     border-style: solid;
     border-width: 1px;
+}
+.summaryBox{
+    background-color: #1d1b31;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+    color:white;
+}
+
+.informationBox {
+    background-color: #3b4e6b;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+    color:white;
+}
+
+.clock {
+    border-width: 5px;
+    border-style: solid;
+    border-image: linear-gradient(to right, rgba(242,10,235,1), rgba(120,6,223,1), rgba(0,212,255,1)) 1;
+    background-color: #1d1b31;
+    color: white;
+    padding:10px;
+    height:20vh;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
 }

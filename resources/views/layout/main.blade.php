@@ -17,18 +17,18 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
         <link href="{{ asset('/css/bootstrap-icons.css') }}" rel="stylesheet">
 
-        <script src="{{ asset('js/clock.min.js') }}"></script>
+        <script src="{{ asset('js/clock.js') }}"></script>
     </head>
     
     <body>
         <div class="row">
             <div class="header">
                 <div class="row">
-                    <div class="col-3 col-md-2 clock" style="margin-top:8px; text-align:start">
+                    <div class="col-3 col-md-2" style="font-size: 24px; margin-top:8px; text-align:start">
                         <span style="margin-left:10px;"> @yield('title', $applicationName)</span>
                     </div>
                     <div class="col-7 col-md-9" style="text-align:center; padding-top:10px; font-size: 24px;font-family:Comic Sans MS, Comic Sans, cursive;">
-                    <!-- <span id="clock"></span> --> 
+                    <!--  --> 
                     </div>
                     <div class="col-1 col-md-1 icon" style="text-align:right"> 
                         <a href="/user"> <img src="{{ asset('/images/user.png') }}" alt="User" style="width:45px; height:45px; margin-right:5px;"></a>
@@ -41,13 +41,13 @@
                 <div class="sidebar">
                     @section('sidebar')
                         <ul class="list-unstyled">
-                            <li>
+                            <li class="blue">
                                 <a href="/">&#128726; Pulpit</a>
                             </li>
                             <li class="text-uppercase mt-2 mb-2">
                                 zadania
                             </li>
-                            <li>
+                            <li class="pink">
                                 <a href="/tasks">&#x1F5F9; Lista</a>
                             </li>
                             <li>
@@ -56,7 +56,7 @@
                             <li class="text-uppercase mt-2 mb-2">
                                 użytkownicy
                             </li>
-                            <li>
+                            <li class="blue">
                                 <a href="/users" >&#128100; Lista</a>
                             </li>
                         </ul>
@@ -67,7 +67,6 @@
                 <div class="row">
                     
                         @yield('content')
-                    
                 </div>
             </div>
         </div>
