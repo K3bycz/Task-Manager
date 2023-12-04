@@ -1,6 +1,6 @@
 <html>
-    <head></head>
+    <head>Szanowny Kierowniku,</head>
     <body>
-        <p> Działa, Panie Kierowniku </p>
+        <p>Działa, poprawnie nawet</p>
     </body>
 </html>

@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use voku\helper\HtmlMin;
 
 class Hello extends Mailable
 {
@@ -32,5 +33,18 @@ class Hello extends Mailable
             ->from('pkapustka@edu.cdv.pl', 'Piotr Kapustka')
             ->subject('Test')
             ->view('mails.welcome');
+    }
+
+    public function getContent()
+    {
+        $content = $this->build()->render();
+
+        // Usuwanie białych znaków, tabulatoróœ itp.
+        // $htmlMin = new HtmlMin();
+        // $compressedContent = $htmlMin->minify($content);
+
+        $compressedContent = gzcompress($content);
+
+        return $compressedContent;
     }
 }
