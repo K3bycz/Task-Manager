@@ -12,13 +12,13 @@
                         @csrf
                             <div class="row">
                                 <div class="col-12" style="margin-top:10px;">
-                                    <p>Nazwa zadania<br> <input required type=text name="title"></p> 
+                                    <p>Nazwa zadania<br> <input required type=text id="title" name="title"></p> 
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-4">
                                     <p>Kategoria<br> 
-                                        <select name="category" id="select">
+                                        <select class="js-example-basic-single" style="width:100%" name="category" id="categorySelect">
                                             <option value="Praca">Praca</option>
                                             <option value="Studia">Studia</option>
                                             <option value="Dom">Dom</option>
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="col-4 offset-1">
                                     <p>Status<br>
-                                        <select name="status" id="select">
+                                        <select class="js-example-basic-single" style="width:100%" name="status" id="statusSelect">
                                             <option value="Nowe">Nowe</option>
                                             <option value="W trakcie">W trakcie</option>
                                             <option value="Zakończone">Zakończone</option>
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-12 blue">
                                     <p><input type="checkbox" name="deadline" id="deadlineCheckbox" style="width: 20px; height: 20px;"/>Deadline</p>
                                     <p id="deadlineInputContainer" style="display: none"> 
                                         <input type="datetime-local" name="deadline">
@@ -46,35 +46,60 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-12 pink">
                                     <p><input type="checkbox" name="priority" style="width: 20px; height: 20px;"/>Wysoki Priorytet</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <p>Opis zadania <br> <textarea name="description" placeholder="(max. 250 znaków)"></textarea></p>
+                                    <p>Opis zadania <br> <textarea id="description" name="description" placeholder="(max. 250 znaków)"></textarea></p>
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-center align-items-center">
                                 <div class="col-4">
-                                    <button type="submit" class="formLink formButton"  style="margin-bottom:20px;">Dodaj zadanie</button>
+                                    <button type="submit" class="addButton formLink formButton"  style="margin-bottom:20px;">Dodaj zadanie</button>
                                 </div>
                             </div>
-                        </form> 
-                        @if ($errors->has('title'))
-                        <div class="alert d-flex justify-content-center align-items-center">
-                            Wprowadzono błędny tytuł!
-                        </div>
-                        @elseif ($errors->has('description'))
-                        <div class="alert d-flex justify-content-center align-items-center">
-                            Wprowadzono błędny opis!
-                        </div>
-                        @endif
-                        @if(session('success'))
-                            <div class="alert d-flex justify-content-center align-items-center">
-                                {{ session('success') }}
+                        </form>
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="col-md-12">
+                                @if ($errors->has('title'))
+                                    <div class="alert">
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-md-12 ">
+                                                Wprowadzono błędny tytuł!
+                                            </div>
+                                            <div class="col-md-4 mb-2">
+                                                <button type="button" class=" alertButton mt-2"> Ok </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @elseif ($errors->has('description'))
+                                    <div class="alert">
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-md-12 ">
+                                                Wprowadzono błędny opis!
+                                            </div>
+                                            <div class="col-md-4 mb-2">
+                                                <button type="button" class=" alertButton mt-2"> Ok </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if(session('success')) 
+                                    <div class="alert">
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-md-12 ">
+                                            {{ session('success') }}
+                                            </div>
+                                            <div class="col-md-4 mb-2">
+                                                <button type="button" class=" alertButton mt-2"> Ok </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
-                        @endif
+                        </div>
                     </div>
                 </div>
             </div> 
@@ -83,17 +108,23 @@
 </div>
 
 @endsection
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const priorytetCheckbox = document.getElementById('deadlineCheckbox');
-        const deadlineInputContainer = document.getElementById('deadlineInputContainer');
-
-        priorytetCheckbox.addEventListener('change', function () {
-            if (this.checked) {
-                deadlineInputContainer.style.display = 'block';
+    $(document).ready(function() {
+        $('#deadlineCheckbox').change(function() {
+            if ($(this).is(':checked')) {
+                $('#deadlineInputContainer').css('display', 'block');
             } else {
-                deadlineInputContainer.style.display = 'none';}
+                $('#deadlineInputContainer').css('display', 'none');
+            }
+        });
+
+        $('.alertButton').on('click', function() {
+            $('.alert').hide();
+        });
+
+        $('.js-example-basic-single').select2({
+            minimumResultsForSearch: Infinity
         });
     });
 </script>

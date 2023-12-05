@@ -1,28 +1,47 @@
+body{
+    background-color:  #dee4ed;
+}
 .form{
-    background-color: #d1d1f6;
+    font-weight:bold;
+    background-color:#1d1b31;
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-    font-family: Arial, sans-serif;
     margin-top:20px;
+    color:white;
+}
+
+.blue input[type='checkbox'] {
+    accent-color: #5d3fd3;
+}
+
+.pink input[type='checkbox'] {
+    accent-color: rgba(242,10,235,1);
 }
 
 .alert{
-    position: relative;
-    text-align: center;
     left:25%;
-    height: 50px;
+    height: 90px;
     width:50%;
-    background-color: #bcbcf2;
-    font-family: Arial, sans-serif;
+    background-color:  rgba(0,212,255,1);
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 
+.alertButton{
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    border-color:white;
+    background-color: rgba(0,212,255,1);
+    color:white;
+    width:100%;
+}
 .addTaskButton{
-    background-color: #5d3fd3;
+    background-color: #1d1b31;
+    color:white;
     height: 45px;
 }
 
 input {
+    padding-left:5px;
     width: 100%;
     height: 45px;
 }
@@ -42,10 +61,23 @@ textarea{
     width: 180px;
 }
 
+#title:focus {
+    outline: 2px solid  rgba(0,212,255,1);
+    border-radius:5px;
+    box-shadow: 0 0 10px  rgba(0,212,255,1); 
+}
+
+#description:focus {
+    outline: 2px solid rgba(242,10,235,1);
+    border-radius:5px;
+    box-shadow: 0 0 10px rgba(242, 10, 235, 0.8); 
+}
+
 .id_box{
+    background-color: #1d1b31;
+    color:white;
     margin-top:10px;
     margin-left:10px;
-    background-color: #bcbcf2;
     border-radius: 3px;
     border-style:solid;
     border-width: 1px;
@@ -53,18 +85,31 @@ textarea{
 }
 
 .formButton{
+    color:white;
     padding-top:5px;
     padding-bottom:5px;
 }
 
+.addButton:hover {
+    background-color: rgba(0,212,255,1);
+}
+
+.deleteButton:hover {
+    background-color:  rgba(242,10,235,1);
+}
+
+.backButton:hover{
+    background-color:  #5d3fd3;
+}
+
 .formLink a {
     background-image: none;
-    color: #000; 
+    color: white; 
     -webkit-background-clip: initial; 
     -webkit-text-fill-color: initial;
     transition: none;
-  }
-  
+}
+
 .formLink a::before{
     background:none;
     transition:none;
@@ -74,10 +119,40 @@ textarea{
     width:80%;
     margin-top: 10px;
     font-size: 16;
-    background-color: #bcbcf2;
-    border-color: black;
+    background-color: #1d1b31;
+    color:white;
+    border-color: white;
     border-radius: 4px;
     border-style: solid;
     border-width: 1px;
     text-align: center;
+}
+
+.select2-container--default .select2-results__option.select2-results__option--highlighted:nth-of-type(1) {
+    background-color: rgba(0,212,255,1) !important;
+    color: white !important;
+}
+.select2-container--default .select2-results__option.select2-results__option--highlighted:nth-of-type(2) {
+    background-color: rgba(242,10,235,1) !important;
+    color: white !important;
+}
+.select2-container--default .select2-results__option.select2-results__option--highlighted:nth-of-type(3) {
+    background-color: #5d3fd3 !important;
+    color: white !important;
+}
+.select2-container--default .select2-results__option.select2-results__option--highlighted:nth-of-type(4) {
+    background-color: rgba(0,212,255,1) !important;
+    color: white !important;
+}
+.select2-container--default .select2-results__option.select2-results__option--highlighted:nth-of-type(5) {
+    background-color: rgba(242,10,235,1) !important;
+    color: white !important;
+}
+
+.select2-container--default .select2-results__option {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 15px;
+    background-color: white;
+    color: black;
 }

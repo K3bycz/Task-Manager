@@ -16,40 +16,37 @@
                 </div> 
                 <div class="col-4 offset-4" style="text-align:right">
                     @if (Route::has('password.request'))
-                        <a href="{{ route('password.request') }}" style="color:#5d3fd3 !important; font-size:13px;">Zapomniałeś hasła?</a><br>
+                        <a href="{{ route('password.request') }}" style="color:rgba(242,10,235,1) !important; font-size:13px;">Zapomniałeś hasła?</a><br>
                     @endif
                 </div> 
             </div> 
             <div class="col-12 m-0 p-0">
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="********"required autocomplete="current-password">
             </div> 
-            <div class="col-3">
+            <div class="col-3 blue">
                 <input type="checkbox" class="form-checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}> Zapamiętaj mnie</input>
             </div>
             <div class="col-6 offset-3 d-flex justify-content-center align-items-center">
-                <button class="button m-2" type="submit">
+                <button class="button m-2 loginButton" type="submit">
                     Zaloguj się
                 </button>
             </div>
             <div class="col-6 offset-3" style="font-size:13px; text-align:center">
-                Nie posiadasz jeszcze konta? <a href="/register" style="color:#5d3fd3 !important">Zarejestruj się</a>
+                Nie posiadasz jeszcze konta? <a href="/register" style="color:rgba(242,10,235,1) !important">Zarejestruj się</a>
             </div>
             </form>
         </div>
     </div>
- 
-
-
-<div class="loginError">
-@if ($errors->has('email'))
-    <div class="alert alert-danger col-lg-6 offset-lg-3">
-        Wprowadzono błędny email.
+    <div class="loginError d-flex align-items-center justify-content-center">
+        @if ($errors->has('email'))
+            <div class="alert alert-danger col-lg-6">
+                Wprowadzono błędny email.
+            </div>
+        @elseif ($errors->has('password'))
+            <div class="alert alert-danger col-lg-6">
+                Wprowadzono błędne hasło!
+            </div>
+        @endif
     </div>
-@elseif ($errors->has('password'))
-    <div class="alert alert-danger col-lg-6 offset-lg-3">
-        Wprowadzono błędne hasło!
-    </div>
-@endif
-</div>
 
 @endsection

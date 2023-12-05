@@ -16,7 +16,7 @@
                     <div class="col-md-12 p-4">
                         <table style="border-collapse: collapse; font-size: 16; width: 100%;">
                             <thead>
-                            <tr style="background-color:#bcbcf2">
+                            <tr>
                                 <th style="width: 5%"><b>ID</b></th>
                                 <th style="text-align: left"><b>Imię</b></th>
                                 <th style="text-align: left"><b>Nazwisko</b></th>
@@ -27,12 +27,12 @@
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr>
-                                    <th><b>{{ $user->id }}</b></th>
-                                    <th style="text-align: left;">{{ $user->firstName }}</th>
-                                    <th style="text-align: left">{{ $user->lastName }}</th>
-                                    <th>{{ $user->email }}</th>
-                                    <th>{{ $user->created_at }}</th>
-                                                    </tr>    
+                                        <th><b>{{ $user->id }}</b></th>
+                                        <th style="text-align: left;">{{ $user->firstName }}</th>
+                                        <th style="text-align: left">{{ $user->lastName }}</th>
+                                        <th>{{ $user->email }}</th>
+                                        <th>{{ $user->created_at }}</th>
+                                    </tr>    
                                 @endforeach
                             </tbody>
                         </table>

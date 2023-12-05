@@ -10,15 +10,22 @@
     <link href="{{ asset('/css/bootstrap-icons.css') }}" rel="stylesheet">
 
     <title> @yield('title', $applicationName ) </title>
-    <script src="{{ asset('js/clock.js') }}"></script>
+
 
     <body> 
-        <div class="row header">
-            <div class="col-3 col-md-1 clock" style="margin-top:8px;">
-                <span id="clock"></span>
-            </div>
-            <div class="col-7 col-md-10" style="text-align:center; padding-top:10px; font-size: 24px;font-family:Comic Sans MS, Comic Sans, cursive;">
-                @yield('title', $applicationName) 
+    <div class="row">
+            <div class="header">
+                <div class="row">
+                    <div class="col-3 col-md-2" style="font-size: 24px; margin-top:8px; text-align:start">
+                        <span style="margin-left:10px;"> @yield('title', $applicationName)</span>
+                    </div>
+                    <div class="col-7 col-md-9" style="text-align:center; padding-top:10px; font-size: 24px;font-family:Comic Sans MS, Comic Sans, cursive;">
+                        <!--  --> 
+                    </div>
+                    <div class="col-1 col-md-1 icon" style="text-align:right"> 
+                       <!--  --> 
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row d-flex justify-content-center align-items-center" >

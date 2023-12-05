@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-12">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control " name="email" placeholder="login/adres e-mail" required autocomplete="email"><br>
+                    <input type="email" id="email" class="form-control " name="email" placeholder="login/adres e-mail" required autocomplete="email"><br>
                 </div>
                 <div class="col-6">
                     <label for="password">Hasło:</label>
@@ -29,12 +29,12 @@
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="********" required autocomplete="new-password"><br>
                 </div>
                 <div class="col-6 offset-3 d-flex justify-content-center align-items-center">
-                    <button type="submit" class="button m-2">
+                    <button type="submit" class="loginButton button m-2">
                         Zarejestruj się
                     </button>
                 </div>
                 <div class="col-6 offset-3" style="font-size:13px; text-align:center">
-                    Masz już konto? <a href="/login" style="color:#5d3fd3 !important">Zaloguj się</a>
+                    Masz już konto? <a href="/login" style="color:rgba(242,10,235,1) !important">Zaloguj się</a>
                 </div>
             </div>
         </form>

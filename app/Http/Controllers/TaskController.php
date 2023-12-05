@@ -81,7 +81,7 @@ class TaskController extends Controller
         $tasks = TaskModel::select('id', 'title', 'category', 'status')
             ->where('user_id',  Auth::id())
             ->orderBy($sortBy, $sortOrder)
-            ->Paginate(10); 
+            ->Paginate(20); 
             
         $title="Lista wszystkich zadań";
 
@@ -159,7 +159,7 @@ class TaskController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/tasks/create')
+            return redirect('/tasks/' . $taskId)
                 ->with(['title' => $title,])
                 ->withErrors($validator)
                 ->withInput();

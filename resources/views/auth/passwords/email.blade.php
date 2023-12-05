@@ -8,7 +8,7 @@
         @csrf
             <input id="email" type="email" class="form-control resetPassword @error('email') is-invalid @enderror" name="email" placeholder="Podaj adres email" required autocomplete="email" autofocus><br>
             <div class="col-6 offset-3" style="text-align:center">                   
-                <button type="submit" class="button m-2">
+                <button type="submit" class="loginButton button m-2">
                     Wyślij
                 </button>
             </div>                   

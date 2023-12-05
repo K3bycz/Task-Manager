@@ -3,13 +3,18 @@ th {
     padding: 4px 10px;
     border-style: solid;
     border-width: 1px;
+    color:black;
+    background-color:#486084;
+}
+
+body{
+    background-color:  #dee4ed;
 }
 
 .tableBackground {
     margin-top:20px;
-    background-color: #d1d1f6;
+    background-color:#1d1b31;
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
-    font-family: Arial, sans-serif;
 }
 
 .sortMenu{
@@ -33,7 +38,7 @@ th {
 
 .pagination li {
     padding-left: 10px;
-    background-color: #d1d1f6;
+    background-color: #1d1b31;;
 }
 
 .pagination .page-item.active .page-link{
@@ -46,8 +51,9 @@ th {
     transition:none;
 }
 .page-item.disabled .page-link{
-    background-color:#bcbcf2;
-    border-color:#bcbcf2;
+    background-color:#5d3fd3;
+    border-color:#5d3fd3;
+    color:white;
 }
 
 .page-link{

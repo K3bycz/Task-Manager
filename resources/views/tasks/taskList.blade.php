@@ -16,7 +16,7 @@
                     <div class="col-md-12 p-4">
                         <table style="border-collapse: collapse; font-size: 16; width: 100%;">
                             <thead>
-                                <tr style="background-color:#bcbcf2">
+                                <tr>
                                     <th style="width: 5%"><b>ID</b></th>
                                     <th style="text-align: left"><b>Tytuł</b></th>
                                     <th style="width: 10%"><b>Kategoria</b></th>
@@ -25,16 +25,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php 
+                                    $colors = ['', 'pink', 'blue'];
+                                    $index = 0;
+                                @endphp
                                 @foreach ($tasks as $task)
                                     <tr>
                                         <th><b>{{ $task->id }}</b></th>
                                         <th style="text-align: left">{{ $task->title }}</th>
-                                        <th >{{ $task->category }}</th>
-                                        <th style="@if ($task->status === 'Nowe')  background-color:#00cc66 @elseif ($task->status === 'W trakcie') background-color:yellow @elseif ($task->status === 'Zakończone')  background-color:#64b5f6 @endif">{{ $task->status }}</th>
-                                        <th>
+                                        <th>{{ $task->category }}</th>
+                                        <th><b><span style="@if ($task->status === 'Nowe') color:#00cc66 @elseif ($task->status === 'W trakcie') color:yellow @elseif ($task->status === 'Zakończone')  color:#64b5f6 @endif">{{ $task->status }}</b></th>
+                                        <th class="{{ $colors[$index % count($colors)] }}">
                                             <a href="{{ route('tasks.show', ['task' => $task->id]) }}" style="padding: 2px 0px 2px 0px">Szczegóły</a>
                                         </th>
-                                    </tr>    
+                                    </tr>
+                                    @php 
+                                        $index++
+                                    @endphp
                                 @endforeach
                             </tbody>
                         </table>
