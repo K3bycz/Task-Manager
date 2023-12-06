@@ -109,6 +109,9 @@
                         <div class="col-12 icon">
                             <a href="/logout"><i class="bi bi-door-open" style="font-size:32px; margin-left:13px"></i></a>
                         </div>
+                        <div class="col-12 icon">
+                            <a href="#" class="mt-1" id="sendButton"><i class="bi bi-eye" style="font-size:32px; margin-left:13px;"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -156,7 +159,7 @@
                 </div>
                 <div class="col-md-1 offset-3 icon">
                     <a href="/sendMail"><i class="bi bi-envelope" style="font-size:32px; margin-left:13px"></i></a>
-                    <a href="#" class="mt-1" id="sendButton"><i class="bi bi-eye" style="font-size:32px; margin-left:13px;"></i></a>
+                    <a href="/sendSMS"><i class="bi bi-send" style="font-size:32px; margin-left:13px"></i></a>
                 </div>
             </div>
             <div class="row user-background" style="height:1000px;background-color:#333333; color:white; border-top:1px solid white !important">
@@ -307,9 +310,14 @@
             <div class="alert alert-danger col-lg-6 offset-lg-3">
                 Wprowadzono błędny opis profilu!
             </div>
-            @elseif ($errors->has('comment'))
+        @elseif ($errors->has('comment'))
             <div class="alert alert-danger col-lg-6 offset-lg-3">
                 Twój komentarz ma błędny format!
+            </div>
+        @endif
+        @if(session()->has('message'))
+            <div class="alert alert-info col-lg-6 offset-lg-3">
+                {{ session('message') }}
             </div>
         @endif
     </div>

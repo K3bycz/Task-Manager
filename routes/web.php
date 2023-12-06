@@ -37,6 +37,9 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
 
     //MAILS
     Route::get('/sendMail', 'MailController@sendMail')->name('send.mail');
+
+    //SMS's
+    Route::get('/sendSMS', 'SmsController@sendSMS')->name('send.sms');
 });
 
 Route::match(['get', 'post'], '/logout', 'Auth\LoginController@logout')->name('logout');
