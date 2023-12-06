@@ -32,30 +32,13 @@
                             @endphp
                             @foreach($lessThan7Days as $task) 
                                 @if($count < 8)
-                                    <script>
-                                        function updateCountdown{{ $task->id }}() {
-                                            var deadline = new Date("{{ $task->deadline }}");
-                                            var now = new Date();
-                                            var timeLeft = deadline - now;
-
-                                            var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                                            var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                                            var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-
-                                            document.getElementById("countdown{{ $task->id }}").innerHTML = days + " dni " + hours + " godzin " + minutes + " minut";}
-
-                                        setInterval(updateCountdown{{ $task->id }}, 1000);
-                                        updateCountdown{{ $task->id }}();
-                                    </script>
-
-                        
-                                        <table style="width:96%; margin:10px 10px 0px 10px">
+                                    <table style="width:96%; margin:10px 10px 0px 10px">
                                         <tr>
                                             <td style="width: 100%; text-align: center;"><b>{{ $task->title }}</b></td>
                                             <td><b>ID:</b> {{ $task->id }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Pozostały czas: <span id="countdown{{ $task->id }}"></span></td>
+                                            <td>Pozostały czas: <span class="countdown{{ $task->id }}"></span></td>
                                             <td class="{{ $colors[$index % count($colors)] }}"><a href="{{ route('tasks.show', ['task' => $task->id]) }}">Szczegóły</a></td>
                                         </tr>
                                     </table>
@@ -132,7 +115,7 @@
                                     @if($count < 6)
                                         <table style="width:93%; margin:10px 20px 0px 20px">
                                             <tr>
-                                                <td style="text-align: center;"><b>{{ $task->title }}</b></td>
+                                                <td style="width: 100%; text-align: center;"><b>{{ $task->title }}</b></td>
                                                 <td><b>ID:</b> {{ $task->id }}</td>
                                             </tr>
                                             <tr>
@@ -269,4 +252,28 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function updateCountdown() {
+            @foreach($lessThan7Days as $task)
+                var deadline{{ $task->id }} = new Date("{{ $task->deadline }}");
+                var now{{ $task->id }} = new Date();
+                var timeLeft{{ $task->id }} = deadline{{ $task->id }} - now{{ $task->id }};
+
+                var days{{ $task->id }} = Math.floor(timeLeft{{ $task->id }} / (1000 * 60 * 60 * 24));
+                var hours{{ $task->id }} = Math.floor((timeLeft{{ $task->id }} % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes{{ $task->id }} = Math.floor((timeLeft{{ $task->id }} % (1000 * 60 * 60)) / (1000 * 60));
+
+                $(".countdown{{ $task->id }}").html(days{{ $task->id }} + " dni " + hours{{ $task->id }} + " godzin " + minutes{{ $task->id }} + " minut");
+            @endforeach
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    });
+</script>
+
+
 @endsection
