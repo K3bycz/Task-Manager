@@ -19,7 +19,7 @@
             </div>
         @elseif (session('status'))
             <div class="alert alert-success col-6 offset-3">
-                {{ session('status') }}
+                Link resetujący hasło został wysłany na podany adres e-mail.
             </div>
         @endif
     </div>

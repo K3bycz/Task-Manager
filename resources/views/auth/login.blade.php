@@ -47,6 +47,11 @@
                 Wprowadzono błędne hasło!
             </div>
         @endif
+        @if(session('status'))
+            <div class="alert alert-success col-6 offset-3">
+                {{ session('status') }}
+            </div>
+        @endif
     </div>
 
 @endsection

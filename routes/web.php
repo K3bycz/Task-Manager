@@ -26,13 +26,17 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
     Route::match(['get', 'post'], '/user/updateBio', 'UserController@updateUserBio')->name('user.updateBio');
     Route::match(['get', 'post'], '/showAddress', 'UserController@showAddress')->name('show.address');
 
+    //RESET PASSWORD
+    Route::post('/password/reset', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('/reset-password/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('/reset-password', 'Auth\ResetPasswordController@reset')->name('password.update');
+
     //COMMENTS
     Route::match(['get', 'post'], '/saveComment', 'CommentsController@saveComment')->name('save.comment');
     Route::match(['get', 'post'], '/deleteComment/{commentId}', 'CommentsController@deleteComment')->name('delete.comment');
 
     //MAILS
     Route::get('/sendMail', 'MailController@sendMail')->name('send.mail');
-   
 });
 
 Route::match(['get', 'post'], '/logout', 'Auth\LoginController@logout')->name('logout');

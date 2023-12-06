@@ -93,8 +93,6 @@ class TaskController extends Controller
     {   
         $task = TaskModel::where('id', $taskId)->first();
 
-        $title = "Zadanie nr.".$taskId;
-
         return view('tasks.showTask', [
             'task' => $task, 'title' => $title ]); 
     }

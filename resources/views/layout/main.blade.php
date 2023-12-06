@@ -28,8 +28,8 @@
         <div class="row">
             <div class="header">
                 <div class="row">
-                    <div class="col-3 col-md-2" style="font-size: 24px; margin-top:8px; text-align:start">
-                        <span style="margin-left:10px;"> @yield('title', $applicationName)</span>
+                    <div class="col-3 col-md-2 icon pt-0" style="font-size: 24px; margin-top:8px; text-align:start">
+                        <span style="margin-left:10px;"><a href="/">@yield('title', $applicationName)</a></span>
                     </div>
                     <div class="col-7 col-md-9" style="text-align:center; padding-top:10px; font-size: 24px;font-family:Comic Sans MS, Comic Sans, cursive;">
                     <!--  --> 
