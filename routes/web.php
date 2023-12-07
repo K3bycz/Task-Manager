@@ -40,6 +40,10 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
 
     //SMS's
     Route::get('/sendSMS', 'SmsController@sendSMS')->name('send.sms');
+
+    //NOTES
+    Route::match(['get','post'], '/notes/list', 'NotesController@index')->name('notes.list');
+    
 });
 
 Route::match(['get', 'post'], '/logout', 'Auth\LoginController@logout')->name('logout');

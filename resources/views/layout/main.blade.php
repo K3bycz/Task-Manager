@@ -48,7 +48,7 @@
                             <li class="blue">
                                 <a href="/">&#128726; Pulpit</a>
                             </li>
-                            <li class="text-uppercase mt-2 mb-2">
+                            <li class="text-uppercase mt-2 mb-2" style="color:grey">
                                 zadania
                             </li>
                             <li class="pink">
@@ -57,10 +57,16 @@
                             <li>
                                 <a href="/tasks/create">&#10133; Dodaj</a>
                             </li>
-                            <li class="text-uppercase mt-2 mb-2">
-                                użytkownicy
+                            <li class="text-uppercase mt-2 mb-2" style="color:grey">
+                                notatnik
                             </li>
                             <li class="blue">
+                                <a href="/notes/list">&#128466; Lista</a>
+                            </li>
+                            <li class="text-uppercase mt-2 mb-2" style="color:grey">
+                                użytkownicy
+                            </li>
+                            <li class="pink">
                                 <a href="/users" >&#128100; Lista</a>
                             </li>
                         </ul>
