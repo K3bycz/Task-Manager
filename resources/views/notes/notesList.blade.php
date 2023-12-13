@@ -2,7 +2,9 @@
 @section('content')
 
 <link rel="stylesheet" href="{{ asset('css/notesList.css') }}">
+<style>
 
+</style>
 <div class="container">
     <div class="row p-4 pb-0 m-1">
         <div class="col-md-8">
@@ -45,7 +47,7 @@
                         </div>
                         <div class="col-12">
                             <label class="mt-3" for="description">Dodaj opis:</label>
-                            <textarea class="form-control rounded shadow" style="max-height:250px;" class="mb-3" name="description" rows="6"></textarea>
+                            <textarea class="form-control rounded shadow" style="max-height:200px;" class="mb-3" name="description" placeholder="(max.180 znaków)" maxlength="180" rows="6"></textarea>
                         </div>
                         <div class="col-12">
                             <label class="mt-3" for="attachments">Obrazy do załączenia</label>
@@ -61,18 +63,33 @@
    </div>
     <!-- /MODAL -->
     <div class="row row-cols-5 g-4 mt-0 m-4">
- 
         @foreach ($notes as $note)
             <div class="col">
                 <div class="card" style="height:235px">
                     <div class="card-body">
-                    <p class="text-muted"> {{ $note->created_at }}</p>
-                    <div class="card-title"><ul><li> {{ $note->title }} </li></ul></div> <!-- max170 -->
-                        @if ($note->attachments != null)
-                            <img src="data:image/jpeg;base64, {{ base64_encode($note->attachments) }}" alt="attachments" style="border: solid white 0.5px; width: 30px; height: 30px; margin-top: 5px;">
-                        @else
-                            {{ $note->description }}
-                        @endif
+                    <p class="text-muted mb-0 pb-0"> {{ $note->created_at }}</p>
+                    <div class="card-title   
+                        @if ($note->category === 'Osobiste')
+                            blue
+                        @elseif ($note->category === 'Biznesowe')
+                            purple
+                        @elseif ($note->category === 'Edukacyjne')
+                            pink
+                        @elseif ($note->category === 'Projekty')
+                            magenta
+                        @endif">
+                        <ul style="list-style: none;">
+                            <li> {{ $note->title }} </li>
+                        </ul>
+                    </div> 
+                        <div class="row">
+                            @if ($note->attachments != null)
+                                <div class="col-4"><img src="{{ asset('attachments/' . $note->attachments) }}" alt="attachments" style="border: solid white 0.5px; width: 120px; height: 120px; margin-top: 5px;"></div>
+                                <div class="col-8">{{ $note->description }}</div>
+                            @else
+                                <div class="col-12">{{ $note->description }}</div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

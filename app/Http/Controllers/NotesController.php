@@ -41,13 +41,13 @@ class NotesController extends Controller
       if ($request->hasFile('attachments')) {
          $file = $request->file('attachments');
          $fileName = $file->getClientOriginalName();
-         $file->storeAs(public_path('attachments'), $fileName . '-' . Auth::user()->id); 
-         
+         $file->storeAs('attachments', Auth::user()->id . '-' . $fileName, 'public');
+
          NotesModel::create([
              'title' => $data['title'],
              'category' => $data['category'],
              'description' => $data['description'] ?? null, 
-             'attachments' => 'attachments/' . $fileName. '-' .Auth::user()->id, // Zapisz lokalizację pliku
+             'attachments' => Auth::user()->id. '-' .$fileName, // Zapisz lokalizację pliku
              'created_at' => now(),
              'updated_at' => now(),
              'user_id' => Auth::user()->id,

@@ -59,3 +59,42 @@ body{
     color:white;
 }
 
+.blue ul li::before {
+    content: "\2022";
+    color: #00d4ff;
+    font-size:28px;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+.pink ul li::before {
+    content: "\2022";
+    color: #f20aeb;
+    font-size:28px;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+.purple ul li::before {
+    content: "\2022";
+    color: #5d3fd3;
+    font-size:28px;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+.magenta ul li::before {
+    content: "\2022";
+    color: #a2006d;
+    font-size:28px;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
