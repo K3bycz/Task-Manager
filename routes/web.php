@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
 
     //NOTES
     Route::match(['get','post'], '/notes/list', 'NotesController@index')->name('notes.list');
+    Route::match(['get','post'], '/notes/create', 'NotesController@create')->name('notes.create');
     
 });
 
