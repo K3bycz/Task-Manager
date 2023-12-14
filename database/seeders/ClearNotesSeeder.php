@@ -6,11 +6,11 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ClearTableSeeder extends Seeder
+class ClearNotesSeeder extends Seeder
 {
 
     public function run()
     {
-        DB::table('tasks_list')->truncate();
+        DB::table('notes_list')->truncate();
     }
 }
