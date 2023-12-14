@@ -12,6 +12,7 @@ use Illuminate\View\View;
 use App\Models\TaskModel;
 use App\Models\AchievementsToUserModel;
 use App\Helpers\AchievementsHelper;
+use App\Events\AddTaskEvent;
 
 class TaskController extends Controller
 {
@@ -137,7 +138,7 @@ class TaskController extends Controller
             'updated_at' => Carbon::now(),
             'user_id' => Auth::user()->id,
         ]);
-
+        event(new AddTaskEvent);
         AchievementsHelper::checkAchievementProgress();
 
         return redirect()->route('tasks.create')->with('success', 'Zadanie zostało dodane.');

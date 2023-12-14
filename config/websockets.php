@@ -23,6 +23,8 @@ return [
      */
     'apps' => [
         [
+            'host' => env('LARAVEL_WEBSOCKETS_HOST', "127.0.0.1"),
+            'port' => env('LARAVEL_WEBSOCKETS_PORT', 8001),
             'id' => env('PUSHER_APP_ID'),
             'name' => env('APP_NAME'),
             'key' => env('PUSHER_APP_KEY'),
@@ -116,6 +118,7 @@ return [
          * certificate chain of issuers. The private key also may be contained
          * in a separate file specified by local_pk.
          */
+        'verify_peer' => false,
         'local_cert' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_CERT', null),
 
         /*

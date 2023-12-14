@@ -108,7 +108,16 @@
 </div>
 
 @endsection
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@vite('resources/js/app.js')
+<script>
+    setTimeout(() => {
+        window.Echo.channel('AddTask')
+        .listen('.App\\Events\\AddTaskEvent', (e) => {
+            console.log(e);
+        })
+    },200);
+</script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#deadlineCheckbox').change(function() {
@@ -127,4 +136,4 @@
             minimumResultsForSearch: Infinity
         });
     });
-</script>
+</script> -->
