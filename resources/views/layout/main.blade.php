@@ -32,7 +32,11 @@
                     <!--  --> 
                     </div>
                     <div class="col-1 col-md-1 icon" style="text-align:right"> 
-                        <a href="/user"> <img src="{{ asset('/images/user.png') }}" alt="User" style="width:45px; height:45px; margin-right:5px;"></a>
+                        @if (App\Helpers\GetUserAvatarHelper::getAvatar() != null)
+                            <a href="/user"><img src="data:image/jpeg;base64, {{ base64_encode(App\Helpers\GetUserAvatarHelper::getAvatar()) }}"  alt="User" style="border-radius:25px;width:45px; height:45px; margin-right:5px;"></a>
+                        @else
+                            <a href="/user"> <img src="{{ asset('/images/user.png') }}" alt="User" style="width:45px; height:45px; margin-right:5px;"></a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -49,7 +53,7 @@
                                 zadania
                             </li>
                             <li class="pink">
-                                <a href="/tasks">&#x1F5F9; Lista</a>
+                                <a href="/tasks">&#x1F5F9; Zadania</a>
                             </li>
                             <li>
                                 <a href="/tasks/create">&#10133; Dodaj</a>
@@ -58,13 +62,13 @@
                                 notatnik
                             </li>
                             <li class="blue">
-                                <a href="/notes/list">&#128466; Lista</a>
+                                <a href="/notes/list">&#128466; Notatki</a>
                             </li>
                             <li class="text-uppercase mt-2 mb-2" style="color:grey">
                                 użytkownicy
                             </li>
                             <li class="pink">
-                                <a href="/users" >&#128100; Lista</a>
+                                <a href="/users" >&#128100; Użytkownicy</a>
                             </li>
                         </ul>
                     @show

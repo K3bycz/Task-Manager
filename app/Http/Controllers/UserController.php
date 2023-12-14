@@ -63,6 +63,7 @@ class UserController extends Controller{
     public function updateUserAdress(Request $request)
     {
         $user = Auth::id();
+        
         $validator = Validator::make(request()->all(), [
             'region' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.]*$/ui|max:50',
             'city' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.]*$/iu|max:50',

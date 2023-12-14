@@ -28,7 +28,8 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/AchievementsHelper.php"
+            "app/Helpers/AchievementsHelper.php",
+            "app/Helpers/GetUserAvatarHelper.php"
         ],
         "psr-4": {
             "App\\": "app/",

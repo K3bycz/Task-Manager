@@ -96,7 +96,7 @@
 @if ($notes->isEmpty())
 <div class="row" style="margin-top:40px;">
         <div class="col-md-4 offset-4 p-3" style="text-align:center">
-            Nie udało się załadować żadych notatek!
+            Brak notatek!
         </div>
     </div>
 @endif
