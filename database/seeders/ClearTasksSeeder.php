@@ -6,10 +6,11 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DeleteUsersSeeder extends Seeder
+class ClearTasksSeeder extends Seeder
 {
+
     public function run()
     {
-        DB::table('users')->truncate();
+        DB::table('tasks_list')->truncate();
     }
 }

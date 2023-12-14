@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <p>Kategoria<br> 
-                                        <select class="js-example-basic-single" style="width:100%" name="category" id="categorySelect">
+                                        <select class="js-example-basic-single" style="width:100%" name="category" id="categorySelect"  dir="ltr">>
                                             <option value="Praca">Praca</option>
                                             <option value="Studia">Studia</option>
                                             <option value="Dom">Dom</option>
