@@ -23,8 +23,6 @@ return [
      */
     'apps' => [
         [
-            'host' => env('LARAVEL_WEBSOCKETS_HOST', "127.0.0.1"),
-            'port' => env('LARAVEL_WEBSOCKETS_PORT', 8001),
             'id' => env('PUSHER_APP_ID'),
             'name' => env('APP_NAME'),
             'key' => env('PUSHER_APP_KEY'),

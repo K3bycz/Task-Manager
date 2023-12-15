@@ -128,9 +128,11 @@
             minimumResultsForSearch: Infinity
         });
 
-        Echo.channel('AddTask')
-        .listen('.AddTaskEvent', (event) => {
-            console.log('Otrzymano AddTaskEvent:', event);
-        });
+        setTimeout(() => {
+        window.Echo.channel('AddTask')
+            .listen('.App\\Events\\AddTaskEvent', (e) => {
+                console.log(e);
+            })
+        }, 200);
     });
 </script>
