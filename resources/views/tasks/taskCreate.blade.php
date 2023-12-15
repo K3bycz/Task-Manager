@@ -109,15 +109,7 @@
 
 @endsection
 @vite('resources/js/app.js')
-<script>
-    setTimeout(() => {
-        window.Echo.channel('AddTask')
-        .listen('.App\\Events\\AddTaskEvent', (e) => {
-            console.log(e);
-        })
-    },200);
-</script>
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#deadlineCheckbox').change(function() {
@@ -135,5 +127,10 @@
         $('.js-example-basic-single').select2({
             minimumResultsForSearch: Infinity
         });
+
+        Echo.channel('AddTask')
+        .listen('.AddTaskEvent', (event) => {
+            console.log('Otrzymano AddTaskEvent:', event);
+        });
     });
-</script> -->
+</script>

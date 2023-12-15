@@ -8,6 +8,7 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use Illuminate\Mail\Events\MessageSent;
 use App\Listeners\SaveSentEmail;
+use App\Events\AddTaskEvent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        AddTaskEvent::class => [
+            \App\Listeners\EventListener::class,
         ],
     ];
 
