@@ -4,14 +4,14 @@
 
 <div class="container">
     <div class="row p-4 pb-0 m-1">
-        <div class="col-md-8 icon">
+        <div class="col-md-7 icon">
             <a href="{{ route('notes.list', ['selectedCategory' => 'all']) }}"><div class="btn dark1btn" style="font-weight:bold">Wszystkie</div></a>
             <a href="{{ route('notes.list', ['selectedCategory' => 'Osobiste']) }}"><div class="btn bluebtn" style="font-weight:bold">Osobiste</div></a>
             <a href="{{ route('notes.list', ['selectedCategory' => 'Biznesowe']) }}"><div class="btn purplebtn" style="font-weight:bold">Biznesowe</div></a>
             <a href="{{ route('notes.list', ['selectedCategory' => 'Edukacyjne']) }}"><div class="btn pinkbtn" style="font-weight:bold">Edukacyjne</div></a>
             <a href="{{ route('notes.list', ['selectedCategory' => 'Projekty']) }}"><div class="btn magentabtn" style="font-weight:bold">Projekty</div></a>
         </div>
-        <div class="col-md-2 pagination">
+        <div class="col-md-3 pagination">
             {{ $notes->onEachSide(1)->links('pagination::bootstrap-4') }}
         </div>
         <div class="col-md-2 btn" style="color: #5d3fd3; text-align:right" data-bs-toggle="modal" data-bs-target="#addNotesModal">
