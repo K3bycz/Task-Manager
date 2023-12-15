@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use App\Models\NotesModel;
+use App\Models\AchievementsToUserModel;
+use App\Helpers\AchievementsHelper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -74,6 +76,7 @@ class NotesController extends Controller
                 'user_id' => Auth::user()->id,
             ]);
         }
+        AchievementsHelper::checkAchievementProgress();
         return redirect()->route('notes.list')->with('success', 'Dodano notatke');
     }
 }
