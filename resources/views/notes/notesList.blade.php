@@ -47,7 +47,7 @@
                             <textarea class="form-control rounded shadow" style="max-height:200px;" class="mb-3" name="description" placeholder="(max.100 znaków)" maxlength="100" rows="6"></textarea>
                         </div>
                         <div class="col-12">
-                            <label class="mt-3" for="attachments">Obrazy do załączenia</label>
+                            <label class="mt-3" for="attachments">Załączniki</label>
                             <input type="file" name="attachments" class="mb-3">
                         </div>
                         <div class="col-12 d-flex justify-content-end mt-3">
@@ -81,8 +81,26 @@
                     </div> 
                         <div class="row">
                             @if ($note->attachments != null)
-                                <div class="col-4"><img src="{{ Storage::url('attachments/' . $note->attachments) }}" alt="attachments" style="border: solid white 0.5px; width: 100px; height: 100px; margin-top: 5px;"></div>
-                                <div class="col-8">{{ $note->description }}</div>
+                                @php
+                                    $extension = pathinfo($note->attachments, PATHINFO_EXTENSION);
+                                @endphp
+
+                                @if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'bmp']))
+                                    <div class="col-4">
+                                        <img src="{{ Storage::url('attachments/' . $note->attachments) }}" alt="attachments" style="border: solid white 0.5px; width: 100px; height: 100px; margin-top: 5px;">
+                                    </div>
+                                    <div class="col-8">{{ $note->description }}</div>
+                                @elseif (in_array($extension, ['mp3', 'webm', 'wav', 'ogg', 'm4a'])) 
+                                    <div class="col-12">
+                                        <audio controls style="width: 100%; height: 40px; margin-top: 5px;">
+                                            <source src="{{ Storage::url('attachments/' . $note->attachments) }}" type="audio/mpeg">
+                                            Twoja przeglądarka nie obsługuje odtwarzacza audio.
+                                        </audio>
+                                    </div>
+                                    <div class="col-12">{{ $note->description }}</div>
+                                @endif
+
+                                
                             @else
                                 <div class="col-12">{{ $note->description }}</div>
                             @endif

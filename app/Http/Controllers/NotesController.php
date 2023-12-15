@@ -43,7 +43,7 @@ class NotesController extends Controller
             'title' => 'required|regex:/^[0-9\a-zA-Z\ąćęłńóśźż\s\.\-]*$/iu|max:50',
             'category' => 'required',
             'description' => 'nullable|regex:/^[0-9\a-zA-Z\ąćęłńóśźż\s\.\,\-]*$/iu|max:250',
-            'attachments' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'attachments' => 'nullable'
         ]);
 
         if ($validator->fails()) {
@@ -55,6 +55,7 @@ class NotesController extends Controller
         if ($request->hasFile('attachments')) {
             $file = $request->file('attachments');
             $fileName = $file->getClientOriginalName();
+         
             $file->storeAs('attachments', Auth::user()->id . '-' . $fileName, 'public');
 
             NotesModel::create([
