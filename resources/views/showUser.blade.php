@@ -240,7 +240,7 @@
                 <div class="col-md-4" style="border-left:1px solid white !important">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center">
-                            <h5 class="mt-1 mb-3"> Twoje osiągnięcia </h5>
+                            <h5 class="mt-1 mb-3"> Twoje osiągnięcia @if($achievements != null){{ count($achievements) }}@else"0"@endif/11</h5>
                         </div>
                     </div>
                     <div class="row pb-2" style="border-bottom:1px solid white !important">
@@ -268,6 +268,12 @@
                             </div>
                             <div class="col-md-12 d-flex justify-content-start align-items-center ml-2 p-1" style="height:50px">
                                 <p>W trakcie <span class="text-muted" style="font-size:25px"> @if($countInProgress != null) {{ $countInProgress }} @endif</span></p>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-start align-items-center ml-2 p-1" style="height:50px">
+                                <p>Notatki <span class="text-muted" style="font-size:25px"> @if($countNotes != null) {{ $countNotes }} @endif</span></p>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-start align-items-center ml-2 p-1" style="height:50px">
+                                <p>Projekty <span class="text-muted" style="font-size:25px"> @if($countProjects!= null) {{ $countProjects }} @endif</span></p>
                             </div>
                         </div>
                     </div>

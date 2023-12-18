@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
 use App\Models\TaskModel;
+use App\Models\NotesModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
@@ -55,9 +56,18 @@ class UserController extends Controller{
         ->where('status','W trakcie')
         ->count();
 
+        $countNotes = NotesModel::all()
+        ->where('user_id',  Auth::id())
+        ->count();
+
+        $countProjects = NotesModel::all()
+        ->where('user_id',  Auth::id())
+        ->where('category', 'Projekty')
+        ->count();
+
         $title = "Informacje o zalogowanym użytkowniku";
 
-        return view('showUser', compact ('avatar', 'profileBackground', 'title', 'countAll', 'countDone', 'countInProgress', 'achievements', 'comments'));
+        return view('showUser', compact ('avatar', 'profileBackground', 'title', 'countAll', 'countDone', 'countInProgress', 'achievements', 'comments', 'countNotes', 'countProjects'));
     }
 
     public function updateUserAdress(Request $request)
