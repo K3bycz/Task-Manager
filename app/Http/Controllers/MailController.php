@@ -13,18 +13,24 @@ class MailController extends Controller
     public function sendMail()
     {
         $recipient = 'piotr.kapustka@onet.pl';
+        $emailContent = new Hello();
+        $mailSubject = $emailContent->getMailSubject();
+        $mailBody = $emailContent->getMailBody(); //skompresowane
 
-        // Stare wysyłanie maila
-        // $emailContent = new Hello();
-        // Mail::to($recipient)->send($emailContent);
-    
-        // Dekompresja htmla
-        // $data = MailModel::find(1)->content;
-        // $uncompressedContent = gzuncompress(base64_decode($data));
-        // dd($uncompressedContent);
-        
-        SendMailJob::dispatch($recipient)->onQueue('send_mail');
-        //php artisan queue:work <- wymagane do wysyłania maili.
+        try {
+            Mail::to($recipient)->send($emailContent);
+            $sent = true;
+        } catch (\Exception $e) {
+            $sent = false;
+        }
+
+        $mail = new MailModel([
+            'recipient' => $recipient,
+            'subject' => $mailSubject,
+            'body' => $mailBody,
+            'sent' => $sent,
+        ]);
+        $mail->save();
 
         return redirect('/user')->with('message', 'Mail został wysłany!');
     }

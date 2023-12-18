@@ -11,18 +11,6 @@ class SaveSentEmail
 {
     public function handle(MessageSent $event)
     {
-        $mail = new \App\Mail\Hello();
-        $compressedContent = $mail->getContent();
-
-        $recipients = $event->message->getTo();
-        $recipientAddress = $recipients[0]->getAddress();
-
-        MailModel::create([
-            'recipient' => $recipientAddress,
-            'subject' => $event->message->getHeaders()->get('subject')->getBody(),
-            'content' => $compressedContent,
-        ]);
-
         return;
     }
 }

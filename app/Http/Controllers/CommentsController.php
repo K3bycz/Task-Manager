@@ -39,7 +39,7 @@ class CommentsController extends Controller
         $comments = CommentsModel::where(
             'user_id', Auth::id())
             ->orderBy('created_at', 'desc')
-            ->Paginate(5);
+            ->Paginate(3);
           
         return $comments;
     }
