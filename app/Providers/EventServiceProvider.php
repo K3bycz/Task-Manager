@@ -28,10 +28,13 @@ class EventServiceProvider extends ServiceProvider
     public function boot(): void
     {
         parent::boot();
-
-        Event::listen(MessageSent::class, SaveSentEmail::class);
+        /** 
+         * Event::listen(MessageSent::class, SaveSentEmail::class); 
+         */
+        
     }
 
+    
     /**
      * Determine if events and listeners should be automatically discovered.
      */
