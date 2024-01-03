@@ -11,8 +11,12 @@
                     <div class="col-md-12">
                         <span id="date" style="font-size:52px;"></span>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-5">
                         <span id="clock" style="font-size:52px;"></span>
+                    </div>
+                    <div class="col-md-7 justify-content-end text-end" style="padding-top:40px">
+                        <span id="weather">
+                        </span>
                     </div>
                 </div>
             </div>
@@ -254,6 +258,7 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('js/clock.js') }}"></script>
+
 <script>
     $(document).ready(function() {
         function updateCountdown() {
@@ -272,6 +277,34 @@
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(sendLocationToServer);
+        } else {
+            console.log("Geolokacja nie jest wspierana przez twoją przeglądarkę!");
+        }
+
+        function sendLocationToServer(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            $.ajax({
+            type: 'GET',
+            url: '/getWeather/' + latitude + '/' + longitude,
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+                success: function(response) {
+                    $('#weather').html(
+                        '<p class="p-0 m-0">' + response.name + '</p>' +
+                        '<p class="p-0 m-0">' + response.weather[0].description + ', ' + ((response.main.temp - 273.15).toFixed(1)) + '°C</p>'
+                    );
+                },
+                error: function(error) {
+                    console.error('Wystąpił błąd:', error);
+                }
+            });
+        }
     });
 </script>
 
