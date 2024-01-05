@@ -47,28 +47,31 @@
                     @section('sidebar')
                         <ul class="list-unstyled">
                             <li class="blue">
-                                <a href="/">&#128726; Pulpit</a>
+                                <a href="/"><i class="bi bi-house"></i> Pulpit</a>
                             </li>
                             <li class="text-uppercase mt-2 mb-2" style="color:grey">
                                 zadania
                             </li>
                             <li class="pink">
-                                <a href="/tasks">&#x1F5F9; Zadania</a>
+                                <a href="/tasks"><i class="bi bi-check-square" style="font-size:14px"></i> Zadania</a>
                             </li>
                             <li>
-                                <a href="/tasks/create">&#10133; Dodaj</a>
+                                <a href="/tasks/create"><i class="bi bi-plus-lg" style="font-size:16px"></i> Dodaj</a>
                             </li>
                             <li class="text-uppercase mt-2 mb-2" style="color:grey">
                                 notatnik
                             </li>
                             <li class="blue">
-                                <a href="/notes/list">&#128466; Notatki</a>
+                                <a href="/notes/list"><i class="bi bi-journals"></i> Notatki</a>
                             </li>
                             <li class="text-uppercase mt-2 mb-2" style="color:grey">
                                 użytkownicy
                             </li>
                             <li class="pink">
-                                <a href="/users" >&#128100; Użytkownicy</a>
+                                <a href="/users" ><i class="bi bi-person-fill"></i> Użytkownicy</a>
+                            </li>
+                            <li>
+                                <a href="/ranking" ><i class="bi bi-graph-up"></i> Ranking</a>
                             </li>
                         </ul>
                     @show

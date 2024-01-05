@@ -240,7 +240,7 @@
                 <div class="col-md-4" style="border-left:1px solid white !important">
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center">
-                            <h5 class="mt-1 mb-3"> Twoje osiągnięcia @if($achievements != null){{ count($achievements) }}@else"0"@endif/11</h5>
+                            <h5 class="mt-1 mb-3"> Twoje osiągnięcia @if($achievements != null) {{ count($achievements) }} @else 0 @endif/ 11</h5>
                         </div>
                     </div>
                     <div class="row pb-2" style="border-bottom:1px solid white !important">

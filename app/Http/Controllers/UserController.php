@@ -164,4 +164,29 @@ class UserController extends Controller{
 
         return response()->json($address);
     }
+
+    public function ranking()
+    {
+        $users = User::select('id', 'firstName', 'lastName', 'email')
+        ->get();
+        
+        $tasksRank = User::select('id', 'firstName', 'lastName', 'email', 'avatar')
+            ->selectSub(function ($query) {
+                $query->selectRaw('count(*)')
+                    ->from('tasks_list')
+                    ->whereColumn('users.id', 'tasks_list.user_id')
+                    ->where('status', 'Zakończone');
+            },  'tasks')
+            ->orderByDesc('tasks')
+            ->limit(13)
+            ->get();
+            
+        $notesRank = User::select('id', 'firstName', 'lastName', 'email', 'avatar')
+            ->withCount('notes')
+            ->orderByDesc('notes_count')
+            ->limit(13)
+            ->get();
+    
+        return view('users.ranking', compact ('tasksRank', 'notesRank', 'users'));
+    }
 }

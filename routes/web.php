@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
     Route::match(['get', 'post'], '/user/upload', 'UserController@uploadAvatar')->name('user.avatarUpload');
     Route::match(['get', 'post'], '/user/updateBio', 'UserController@updateUserBio')->name('user.updateBio');
     Route::match(['get', 'post'], '/showAddress', 'UserController@showAddress')->name('show.address');
+    Route::match(['get', 'post'], '/ranking', 'UserController@ranking')->name('ranking');
 
     //RESET PASSWORD
     Route::post('/password/reset', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
