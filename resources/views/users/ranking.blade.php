@@ -184,7 +184,7 @@
                                             @if ($user->avatar != null)
                                                 <img src="data:image/jpeg;base64, {{ base64_encode($user->avatar) }}"  alt="User"  style="width:20px; height:20px; border-radius:50%; margin-right:5px;">
                                             @else
-                                            <img src="{{ asset('/images/user.png') }}" style="width:20px; height:20px; border-radius:50%; margin-right:5px;">
+                                                <img src="{{ asset('/images/user.png') }}" style="width:20px; height:20px; border-radius:50%; margin-right:5px;">
                                             @endif
                                             {{ $user->firstName }} {{ $user->lastName }}
                                         </div>

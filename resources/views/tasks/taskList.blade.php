@@ -17,7 +17,7 @@
                         <table style="border-collapse: collapse; font-size: 16; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th style="width: 5%"><b>ID</b></th>
+                                    <th style="width: 5%"><b>Nr.</b></th>
                                     <th style="text-align: left"><b>Tytuł</b></th>
                                     <th style="width: 10%"><b>Kategoria</b></th>
                                     <th style="width: 10%"><b>Status</b></th>
@@ -31,7 +31,7 @@
                                 @endphp
                                 @foreach ($tasks as $task)
                                     <tr>
-                                        <th><b>{{ $task->id }}</b></th>
+                                        <th><b>{{ $index +1 }}</b></th>
                                         <th style="text-align: left">{{ $task->title }}</th>
                                         <th>{{ $task->category }}</th>
                                         <th><b><span style="@if ($task->status === 'Nowe') color:#00cc66 @elseif ($task->status === 'W trakcie') color:yellow @elseif ($task->status === 'Zakończone')  color:#64b5f6 @endif">{{ $task->status }}</b></th>
