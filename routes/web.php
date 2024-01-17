@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
     Route::match(['get', 'post'], '/user/upload', 'UserController@uploadAvatar')->name('user.avatarUpload');
     Route::match(['get', 'post'], '/user/updateBio', 'UserController@updateUserBio')->name('user.updateBio');
     Route::match(['get', 'post'], '/showAddress', 'UserController@showAddress')->name('show.address');
+    Route::match(['get', 'post'], '/ranking', 'UserController@ranking')->name('ranking');
 
     //RESET PASSWORD
     Route::post('/password/reset', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -40,6 +41,14 @@ Route::middleware(['auth'])->group(function() { // tylko dla zalogowanego uzytko
 
     //SMS's
     Route::get('/sendSMS', 'SmsController@sendSMS')->name('send.sms');
+
+    //NOTES
+    Route::match(['get','post'], '/notes/list', 'NotesController@index')->name('notes.list');
+    Route::match(['get','post'], '/notes/create', 'NotesController@create')->name('notes.create');
+
+    //WEATHER
+    Route::match(['get','post'], '/getWeather/{latitude}/{longitude}', 'WeatherController@getWeather')->name('getWeather');
+    
 });
 
 Route::match(['get', 'post'], '/logout', 'Auth\LoginController@logout')->name('logout');

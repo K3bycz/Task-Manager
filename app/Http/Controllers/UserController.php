@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
 use App\Models\TaskModel;
+use App\Models\NotesModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
@@ -55,14 +56,24 @@ class UserController extends Controller{
         ->where('status','W trakcie')
         ->count();
 
+        $countNotes = NotesModel::all()
+        ->where('user_id',  Auth::id())
+        ->count();
+
+        $countProjects = NotesModel::all()
+        ->where('user_id',  Auth::id())
+        ->where('category', 'Projekty')
+        ->count();
+
         $title = "Informacje o zalogowanym użytkowniku";
 
-        return view('showUser', compact ('avatar', 'profileBackground', 'title', 'countAll', 'countDone', 'countInProgress', 'achievements', 'comments'));
+        return view('showUser', compact ('avatar', 'profileBackground', 'title', 'countAll', 'countDone', 'countInProgress', 'achievements', 'comments', 'countNotes', 'countProjects'));
     }
 
     public function updateUserAdress(Request $request)
     {
         $user = Auth::id();
+        
         $validator = Validator::make(request()->all(), [
             'region' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.]*$/ui|max:50',
             'city' => 'nullable|regex:/^[a-zA-Z\ąćęłńóśźż\s\.]*$/iu|max:50',
@@ -152,5 +163,30 @@ class UserController extends Controller{
         ->first();
 
         return response()->json($address);
+    }
+
+    public function ranking()
+    {
+        $users = User::select('id', 'firstName', 'lastName', 'email')
+        ->get();
+        
+        $tasksRank = User::select('id', 'firstName', 'lastName', 'email', 'avatar')
+            ->selectSub(function ($query) {
+                $query->selectRaw('count(*)')
+                    ->from('tasks_list')
+                    ->whereColumn('users.id', 'tasks_list.user_id')
+                    ->where('status', 'Zakończone');
+            },  'tasks')
+            ->orderByDesc('tasks')
+            ->limit(13)
+            ->get();
+            
+        $notesRank = User::select('id', 'firstName', 'lastName', 'email', 'avatar')
+            ->withCount('notes')
+            ->orderByDesc('notes_count')
+            ->limit(13)
+            ->get();
+    
+        return view('users.ranking', compact ('tasksRank', 'notesRank', 'users'));
     }
 }

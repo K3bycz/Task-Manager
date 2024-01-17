@@ -65,6 +65,38 @@ class AddAchievementsSeeder extends Seeder
             'title' => 'Mól książkowy',
             'description' => 'Zrób 10 zadań na studia',
             'url'=> '/images/mol.jpg'
-        ]);      
+        ]);
+        
+        AchievementsModel::firstOrCreate([
+            'title' => 'Pilny uczeń',
+        ], [
+            'title' => 'Pilny uczeń',
+            'description' => 'Dodaj 5 notatek edukacyjnych',
+            'url'=> '/images/edu.jpg'
+        ]);
+        
+        AchievementsModel::firstOrCreate([
+            'title' => 'Poradnik sukcesu',
+        ], [
+            'title' => 'Poradnik sukcesu',
+            'description' => 'Dodaj 5 notatek biznesowych',
+            'url'=> '/images/biznes.jpg'
+        ]);
+        
+        AchievementsModel::firstOrCreate([
+            'title' => 'Samoorganizacja',
+        ], [
+            'title' => 'Samoorganizacja',
+            'description' => 'Dodaj 5 notatek osobistych',
+            'url'=> '/images/self.jpg'
+        ]);
+        
+        AchievementsModel::firstOrCreate([
+            'title' => 'Innowacja!',
+        ], [
+            'title' => 'Innowacja!',
+            'description' => 'Dodaj 5 nowych projektów',
+            'url'=> '/images/project.jpg'
+        ]);  
     }
 }

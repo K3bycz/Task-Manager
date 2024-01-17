@@ -6,18 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class TaskModel extends Model
+class NotesModel extends Model
 {
-    protected $table = 'tasks_list';
+    protected $table = 'notes_list';
     protected $primaryKey = 'id';
     protected $fillable = [
         'title',
         'category',
-        'status',
-        'deadline',
-        'priority',
         'description',
-        'user_id'
+        'user_id',
+        'attachments'
     ];
 
     public function user()

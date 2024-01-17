@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_CONNECTION', 'sync'),
+    'default' => env('QUEUE_CONNECTION', 'send_mail'),
 
     /*
     |--------------------------------------------------------------------------
@@ -71,6 +71,12 @@ return [
             'after_commit' => false,
         ],
 
+        'send_mail' => [
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'send_mail',
+            'retry_after' => 5
+        ],
     ],
 
     /*

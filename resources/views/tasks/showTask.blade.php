@@ -13,9 +13,12 @@
                                 <form method="POST">
                                     @csrf
                                     @method('PUT') 
-                                    <div class="row">
+                                    <div class="row justify-content-between">
                                         <div class="col-md-2 id_box">
                                             ID: {{ $task->id }}
+                                        </div>
+                                        <div class="col-md-5 offset-2 id_box" style="margin-right:12px !important">
+                                        {{ \Carbon\Carbon::parse($task->created_at)->format('d.m.Y H:i') }}
                                         </div>
                                     </div>
                                     <div class="row">

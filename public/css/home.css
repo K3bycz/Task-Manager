@@ -6,7 +6,7 @@ td {
     color:#121821;
     background-color:#486084;
 }
-.summaryBox{
+.summaryBox {
     border-width: 5px;
     border-style: solid;
     border-image: linear-gradient(to right, rgba(242,10,235,1), rgba(120,6,223,1), rgba(0,212,255,1)) 1 ;

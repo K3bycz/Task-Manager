@@ -4,7 +4,6 @@
         <title> @yield('title', $applicationName ) </title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
@@ -20,8 +19,6 @@
 
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-        <script src="{{ asset('js/clock.js') }}"></script>
     </head>
     
     <body>
@@ -35,7 +32,11 @@
                     <!--  --> 
                     </div>
                     <div class="col-1 col-md-1 icon" style="text-align:right"> 
-                        <a href="/user"> <img src="{{ asset('/images/user.png') }}" alt="User" style="width:45px; height:45px; margin-right:5px;"></a>
+                        @if (App\Helpers\GetUserAvatarHelper::getAvatar() != null)
+                            <a href="/user"><img src="data:image/jpeg;base64, {{ base64_encode(App\Helpers\GetUserAvatarHelper::getAvatar()) }}"  alt="User" style="border-radius:25px;width:45px; height:45px; margin-right:5px;"></a>
+                        @else
+                            <a href="/user"> <img src="{{ asset('/images/user.png') }}" alt="User" style="width:45px; height:45px; margin-right:5px;"></a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -46,22 +47,31 @@
                     @section('sidebar')
                         <ul class="list-unstyled">
                             <li class="blue">
-                                <a href="/">&#128726; Pulpit</a>
+                                <a href="/"><i class="bi bi-house"></i> Pulpit</a>
                             </li>
-                            <li class="text-uppercase mt-2 mb-2">
+                            <li class="text-uppercase mt-2 mb-2" style="color:grey">
                                 zadania
                             </li>
                             <li class="pink">
-                                <a href="/tasks">&#x1F5F9; Lista</a>
+                                <a href="/tasks"><i class="bi bi-check-square" style="font-size:14px"></i> Zadania</a>
                             </li>
                             <li>
-                                <a href="/tasks/create">&#10133; Dodaj</a>
+                                <a href="/tasks/create"><i class="bi bi-plus-lg" style="font-size:16px"></i> Dodaj</a>
                             </li>
-                            <li class="text-uppercase mt-2 mb-2">
-                                użytkownicy
+                            <li class="text-uppercase mt-2 mb-2" style="color:grey">
+                                notatnik
                             </li>
                             <li class="blue">
-                                <a href="/users" >&#128100; Lista</a>
+                                <a href="/notes/list"><i class="bi bi-journals"></i> Notatki</a>
+                            </li>
+                            <li class="text-uppercase mt-2 mb-2" style="color:grey">
+                                użytkownicy
+                            </li>
+                            <li class="pink">
+                                <a href="/users" ><i class="bi bi-person-fill"></i> Użytkownicy</a>
+                            </li>
+                            <li>
+                                <a href="/ranking" ><i class="bi bi-graph-up"></i> Ranking</a>
                             </li>
                         </ul>
                     @show
@@ -69,8 +79,7 @@
             </div>
             <div class="col-9 col-md-11">
                 <div class="row">
-                    
-                        @yield('content')
+                    @yield('content')
                 </div>
             </div>
         </div>

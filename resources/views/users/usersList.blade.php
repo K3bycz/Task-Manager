@@ -20,8 +20,8 @@
                                 <th style="width: 5%"><b>ID</b></th>
                                 <th style="text-align: left"><b>Imię</b></th>
                                 <th style="text-align: left"><b>Nazwisko</b></th>
-                                <th style="width: 30%"><b>Email</b></th>
-                                <th style="width: 15%; padding:5px;"><b>Data utworzenia</b></th>
+                                <th style="width: 27%"><b>Email</b></th>
+                                <th style="width: 18%; padding:5px;"><b>Data założenia konta</b></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -31,7 +31,7 @@
                                         <th style="text-align: left;">{{ $user->firstName }}</th>
                                         <th style="text-align: left">{{ $user->lastName }}</th>
                                         <th>{{ $user->email }}</th>
-                                        <th>{{ $user->created_at }}</th>
+                                        <th>{{ \Carbon\Carbon::parse($user->created_at)->format('d.m.Y H:i') }}</th>
                                     </tr>    
                                 @endforeach
                             </tbody>
