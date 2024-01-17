@@ -1,15 +1,15 @@
-**K3bycz's Task Manager**
-serves as a task manager, aiding in daily life tasks such as daily planning, work, or study organization. The application continuously monitors user progress in tasks and notifies them of approaching deadlines. 
+###K3bycz's Task Manager
+**K3bycz's Task Manager** serves as a task manager, aiding in daily life tasks such as daily planning, work, or study organization. The application continuously monitors user progress in tasks and notifies them of approaching deadlines. 
 The application supports multiple users simultaneously, ensuring that each user's tasks and notes remain private. Users can create their fully editable user panel and track their task completion progress in a user ranking. 
 Additionally, after proper configuration, the application can send SMS and emails.
 
-**Installation**
+###Installation
 Begin by installing all required packages with the following command:
 ``` 
 composer install
 ```
 
-**Database**
+##Database
 For the application to function correctly, a database is required (SQLite was used during application testing). 
 Create the necessary database, and configure the .env file as follows:
 ```
@@ -27,7 +27,7 @@ To ensure proper application functionality, add the following line to the .env f
 ```
 APP_KEY=base64:nMmcc8DBrpmU2III/uM57ugUR3EeO2R+aJ19F63NPdk=
 ```
-
+###Start the Application:
 Once everything is set up, start the application with the following command:
 ```
 php artisan serv
