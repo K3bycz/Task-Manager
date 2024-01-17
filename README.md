@@ -1,5 +1,5 @@
 **K3bycz's Task Manager**
-K3bycz's Task Manager serves as a task manager, aiding in daily life tasks such as daily planning, work, or study organization. The application continuously monitors user progress in tasks and notifies them of approaching deadlines. 
+serves as a task manager, aiding in daily life tasks such as daily planning, work, or study organization. The application continuously monitors user progress in tasks and notifies them of approaching deadlines. 
 The application supports multiple users simultaneously, ensuring that each user's tasks and notes remain private. Users can create their fully editable user panel and track their task completion progress in a user ranking. 
 Additionally, after proper configuration, the application can send SMS and emails.
 
