@@ -25,8 +25,13 @@ php artisan migrate
 
 To ensure proper application functionality, add the following line to the .env file:
 ```
-APP_KEY=base64:nMmcc8DBrpmU2III/uM57ugUR3EeO2R+aJ19F63NPdk=
+APP_KEY=
 ```
+Then, execute the command
+```
+php artisan key:generate
+```
+
 ### Start the Application:
 Once everything is set up, start the application with the following command:
 ```
