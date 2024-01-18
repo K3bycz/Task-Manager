@@ -5,7 +5,7 @@ Additionally, after proper configuration, the application can send SMS and email
 
 ### Installation
 Begin by installing all required packages with the following command:
-``` 
+```bash
 composer install
 ```
 
@@ -19,7 +19,7 @@ DB_PORT=3306
 ```
 
 Then run the following command to migrate the database:
-```
+```bash
 php artisan migrate
 ```
 
@@ -28,13 +28,13 @@ To ensure proper application functionality, add the following line to the .env f
 APP_KEY=
 ```
 Then, execute the command
-```
+```bash
 php artisan key:generate
 ```
 
 ### Start the Application:
 Once everything is set up, start the application with the following command:
-```
+```bash
 php artisan serv
 ```
 or any other command suitable for your environment. Afterward, register and start using the application.
